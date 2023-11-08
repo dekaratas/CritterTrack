@@ -1,5 +1,5 @@
-import '../../assets/fontStyles.css'
+import './dashboard.css'
 
 export default function Dashboard() {
-  return <h1 style={{ fontSize: '21px', color: 'white' }}>Hello, world!</h1>
+  return <h1>Hello, world!</h1>
 }

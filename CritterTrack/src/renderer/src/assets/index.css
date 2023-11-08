@@ -128,6 +128,35 @@ table {
   border-spacing: 0;
 }
 
+/* Use my custom svg as background and animate it! */
+#svgContainer {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
 body {
-  background-image: url('./layered-waves-haikei (1).svg');
+  overflow-y: hidden;
+  overflow-y: hidden;
+}
+
+@keyframes waveAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#visual path {
+  animation: waveAnimation 5s linear infinite;
+}
+
+/* Compensate for the 'pushing down' of the svg by making the background color */
+body {
+  background-color: #0c0032;
 }
