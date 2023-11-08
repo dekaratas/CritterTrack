@@ -10,6 +10,8 @@ export default function Header() {
       <h1 className="search">CritterSearch</h1>
       <h1 className="separator">|</h1>
       <h1 className="addrecord">Add new Record</h1>
+      <h1 className="separator">|</h1>
+      <h1 className="settings">Settings</h1>
     </div>
   )
 }
