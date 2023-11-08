@@ -1,0 +1,42 @@
+// Prisma Schema Generator
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Reference to my psql database
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+// My current models for both sightings and individual Species
+model PersonalSighting {
+  id Int @id @default(autoincrement())
+  date DateTime
+  vernacular String
+  sst Float
+  sss Float
+  shoredistance Int
+  depth Int?
+  count Int
+  imgURL String
+  longitude Float
+  latitude Float
+  country String?
+  createdAt DateTime @default(now())
+}
+
+model Species {
+  id Int @id @default(autoincrement())
+  sci_name String
+  vernacular String
+  redlistStatus Boolean @default(false)
+  category String?
+  sight_count Int
+  sst Float[]
+  sss Float[]
+  coordinates String[]
+  depth Int[]
+  count Int[]
+}
