@@ -1,2 +1,7 @@
 /* Import my custom font file */
 @import url('../../assets/fontStyles.css');
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+}

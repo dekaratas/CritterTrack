@@ -133,6 +133,9 @@ table {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  z-index: 0;
+  position: relative;
+  transform: translateY(-560px);
 }
 
 body {
@@ -159,4 +162,9 @@ body {
 /* Compensate for the 'pushing down' of the svg by making the background color */
 body {
   background-color: #080122;
+}
+
+#root {
+  z-index: 1;
+  position: relative;
 }
