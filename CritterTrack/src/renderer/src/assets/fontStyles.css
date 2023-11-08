@@ -1,0 +1,19 @@
+/* Importing my custom fonts */
+@font-face {
+  font-family: 'Reso-Regular';
+  src: url('./fonts/Reso Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Reso-Bold';
+  src: url('./fonts/Reso Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Reso-Thin';
+  src: url('./fonts/Reso Thin.ttf');
+}
+
+h1 {
+  font-family: 'Reso-Regular';
+}
