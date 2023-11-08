@@ -3,8 +3,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Prisma queries will go here
-  // TODO: Write them queries boy
   const user = await prisma.personalSighting.create({
     data: {
       date: new Date(),
@@ -19,8 +17,7 @@ async function main() {
       latitude: 34.13,
       country: 'New Zealand',
     },
-  })
-  console.log(user)
+  });
 }
 
 main()

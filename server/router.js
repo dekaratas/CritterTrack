@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { getAllRecords } = require('./controllers/sightcontroller.ts')
+const { getAllRecords, addNewRecord } = require('./controllers/sightcontroller.js')
 
 router.get('/sights', getAllRecords);
+router.post('/addsight', addNewRecord);
 
 module.exports = router;
