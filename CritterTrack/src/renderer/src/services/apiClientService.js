@@ -1,4 +1,4 @@
-import { apiServerAxios, apiGetServerAxios } from './axiosInstances'
+import { apiServerAxios, apiGetServerAxios, apiDeleteServerAxios } from './axiosInstances'
 
 export default async function addNewRecord(data) {
   try {
@@ -15,5 +15,14 @@ export async function getMyRecords() {
     return response.data
   } catch (error) {
     console.error('There has been an issue retrieving your data: ', error)
+  }
+}
+
+export async function deleteRecordById(id) {
+  try {
+    const response = await apiDeleteServerAxios.delete(`/${id}`)
+    return response.data
+  } catch (error) {
+    console.error('There has been an issue deleting the record: ', error)
   }
 }

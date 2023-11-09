@@ -7,6 +7,6 @@ const {
 
 router.get("/sights", getAllRecords);
 router.post("/addsight", addNewRecord);
-router.delete("/sights", deleteRecord);
+router.delete("/sights/:id", deleteRecord);
 
 module.exports = router;

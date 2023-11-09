@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import './MyLibrary.css'
-import { getMyRecords } from '../../services/apiClientService'
+import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
 
 export default function MyLibrary() {
   const [records, setRecords] = useState([])
@@ -17,6 +17,15 @@ export default function MyLibrary() {
     }
     fetchRecords()
   }, [])
+
+  const handleDeletion = (id) => (e) => {
+    try {
+      e.preventDefault()
+      deleteRecordById(id)
+    } catch (error) {
+      console.error('Error deleting record:', error)
+    }
+  }
 
   return (
     <div className="myLibraryContainer">
@@ -36,6 +45,7 @@ export default function MyLibrary() {
             <p>Latitude: {record.latitude}</p>
             <p>Country: {record.country}</p>
             <p>Creation: {record.createdAt}</p>
+            <button onClick={handleDeletion(record.id)}>X</button>
           </div>
         ))}
       </div>

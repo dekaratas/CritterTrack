@@ -20,7 +20,13 @@ export const apiServerAxios = axios.create({
   }
 })
 
+// Axios instance to Get and Delete sights from db
 export const apiGetServerAxios = axios.create({
+  baseURL: 'http://localhost:3001/sights',
+  timeout: 5000
+})
+
+export const apiDeleteServerAxios = axios.create({
   baseURL: 'http://localhost:3001/sights',
   timeout: 5000
 })
