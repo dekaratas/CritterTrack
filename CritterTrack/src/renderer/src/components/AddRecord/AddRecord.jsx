@@ -2,6 +2,10 @@ import ImageUpload from '../ImageUpload/ImageUpload'
 import './AddRecord.css'
 import { useState } from 'react'
 
+// TODO: After creating a species table, have the input field suggest autocompletions
+// TODO: Adjust the input types accordingly
+// TODO: Try to do something about the Date label blocking the mm/dd/yyyy, looks a wee bit ugly
+
 export default function AddRecord() {
   const [inputs, setInputs] = useState([
     { id: 'vernacular', value: '', name: 'Species (Vernacular)*' },

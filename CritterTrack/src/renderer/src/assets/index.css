@@ -3,6 +3,7 @@
    License: none (public domain)
 */
 
+/* CSS Reset Start */
 html,
 body,
 div,
@@ -127,12 +128,13 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+/* CSS Reset End */
 
-/* Use my custom svg as background and animate it! */
+/* Configure my wave svg and animate it! */
+/* TODO: Either add another layer of waves or randomize the animation a bit */
 #svgContainer {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
   z-index: 0;
   position: relative;
   transform: translateY(-560px);
@@ -159,7 +161,7 @@ body {
   animation: waveAnimation 5s linear infinite;
 }
 
-/* Compensate for the 'pushing down' of the svg by making the background color */
+/* Set bg color and put everything in front of the waves by setting root z-index higher */
 body {
   background-color: #080122;
 }
