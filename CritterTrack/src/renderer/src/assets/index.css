@@ -140,6 +140,14 @@ table {
   transform: translateY(-560px);
 }
 
+#svgContainerTwo {
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  position: relative;
+  transform: translateY(-1140px);
+}
+
 body {
   overflow-y: hidden;
   overflow-y: hidden;
@@ -157,7 +165,7 @@ body {
   }
 }
 
-#visual path {
+#svgContainer #visual path {
   animation: waveAnimation 5s linear infinite;
 }
 
