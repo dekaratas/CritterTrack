@@ -138,7 +138,7 @@ table {
   height: 100vh;
   z-index: 2;
   position: relative;
-  transform: translateY(-789px);
+  transform: translateY(-750px);
 }
 
 #svgContainer {
