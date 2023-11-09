@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import addImage from '../../assets/icons8-image-file-add-64.png'
 import './imageupload.css'
 import { useState } from 'react'
@@ -6,7 +7,7 @@ import convertImageToBase64 from '../../Utils/imageConverter'
 
 // TODO: Fix image mess when cancelling the image selection
 
-export default function ImageUpload() {
+export default function ImageUpload({ onImageUpload }) {
   const [imageUrl, setImageUrl] = useState('')
 
   const onOpenFileClick = async () => {
@@ -34,6 +35,7 @@ export default function ImageUpload() {
 
       const resData = await uploadImage(formData)
       console.log('Great success: ', resData.data.link)
+      onImageUpload(resData.data.link)
     } catch (err) {
       console.error('Error uploading: ', err)
     }

@@ -31,9 +31,20 @@ export default function AddRecord() {
     setInputs(updatedInputs)
   }
 
+  const handleImageChange = (url) => {
+    console.log('handleImageChange is called', url)
+    const updatedInputs = inputs.map((input) => {
+      if (input.id === 'imgURL') {
+        return { ...input, value: url }
+      }
+      return input
+    })
+    setInputs(updatedInputs)
+  }
+
   return (
     <div className="addRecordContainer">
-      <ImageUpload />
+      <ImageUpload onImageUpload={handleImageChange} />
       <div className="form-container">
         <form action="">
           {inputs.map((input) => (
