@@ -1,11 +1,16 @@
+/* eslint-disable react/prop-types */
 import './header.css'
 
-export default function Header() {
+export default function Header({ onComponentChange }) {
+  const handleButtonClick = (component) => {
+    onComponentChange(component)
+  }
+
   return (
     <div className="headerContainer">
       <h1 className="logo">CritterTrack</h1>
       <h1 className="separator">|</h1>
-      <button>
+      <button onClick={() => handleButtonClick('myLibrary')}>
         <h1 className="library">My Library</h1>
       </button>
       <h1 className="separator">|</h1>
@@ -13,7 +18,7 @@ export default function Header() {
         <h1 className="search">CritterSearch</h1>
       </button>
       <h1 className="separator">|</h1>
-      <button>
+      <button onClick={() => handleButtonClick('addRecord')}>
         <h1 className="addrecord">Add new Record</h1>
       </button>
       <h1 className="separator">|</h1>
