@@ -72,7 +72,22 @@ async function addNewRecord(req, res) {
   }
 }
 
+async function deleteRecord(req, res) {
+  try {
+    const requestBody = req.body;
+    const record = await prisma.personalSighting.delete({
+      where: { id: requestBody.id },
+    });
+    console.log("The following record was successfully deleted: ", record);
+    res.status(201).send(record);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Something went wrong, oops!");
+  }
+}
+
 module.exports = {
   getAllRecords,
   addNewRecord,
+  deleteRecord,
 };
