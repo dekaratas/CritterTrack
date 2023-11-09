@@ -31,3 +31,14 @@ button:active {
   text-align: center;
   text-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
 }
+
+/* Stop users from dragging images and destroying the EXPERIENCE */
+*,
+*::after,
+*::before {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-app-region: no-drag;
+  cursor: default;
+}
