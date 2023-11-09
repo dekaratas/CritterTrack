@@ -8,20 +8,6 @@ import { formatISO, parseISO, setSeconds, setMilliseconds } from 'date-fns'
 // TODO: After creating a species table, have the input field suggest autocompletions
 
 export default function AddRecord() {
-  const [inputs, setInputs] = useState([
-    { id: 'vernacular', value: '', name: 'Species (Vernacular)', type: 'text' },
-    { id: 'date', value: '', name: 'Date' },
-    { id: 'sss', value: '', name: 'Sea Surface Salinity', type: 'number' },
-    { id: 'sst', value: '', name: 'Sea Surface Temperature', type: 'number' },
-    { id: 'shoredistance', value: '', name: 'Shore Distance', type: 'number' },
-    { id: 'depth', value: '', name: 'Depth', type: 'number' },
-    { id: 'count', value: '', name: 'Count', type: 'number' },
-    { id: 'imgURL', value: '', name: 'Image URL' },
-    { id: 'longitude', value: '', name: 'Longitude', type: 'number' },
-    { id: 'latitude', value: '', name: 'Latitude', type: 'number' },
-    { id: 'country', value: '', name: 'Country', type: 'text' }
-  ])
-
   const initialInputs = [
     { id: 'vernacular', value: '', name: 'Species (Vernacular)', type: 'text' },
     { id: 'date', value: '', name: 'Date' },
@@ -35,6 +21,7 @@ export default function AddRecord() {
     { id: 'latitude', value: '', name: 'Latitude', type: 'number' },
     { id: 'country', value: '', name: 'Country', type: 'text' }
   ]
+  const [inputs, setInputs] = useState(initialInputs)
 
   const resetInputs = () => {
     setInputs(initialInputs)
@@ -93,6 +80,7 @@ export default function AddRecord() {
 
     if (resData) {
       console.log(resData)
+      console.log('Clearing all fields')
       resetInputs()
     }
   }
