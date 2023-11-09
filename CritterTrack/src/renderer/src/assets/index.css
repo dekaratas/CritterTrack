@@ -132,20 +132,21 @@ table {
 
 /* Configure my wave svg and animate it! */
 /* TODO: Either add another layer of waves or randomize the animation a bit */
-#svgContainer {
-  width: 100%;
-  height: 100vh;
-  z-index: 0;
-  position: relative;
-  transform: translateY(-560px);
-}
 
 #svgContainerTwo {
   width: 100%;
   height: 100vh;
   z-index: 2;
   position: relative;
-  transform: translateY(-1140px);
+  transform: translateY(-789px);
+}
+
+#svgContainer {
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  position: relative;
+  transform: translateY(-560px);
 }
 
 body {
