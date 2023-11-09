@@ -48,7 +48,7 @@ async function addNewRecord(req, res) {
           sst: myData.sst,
           sss: myData.sss,
           shoredistance: myData.shoredistance,
-          depth: myData.shoredistance,
+          depth: myData.depth,
           count: myData.count,
           imgURL: myData.imgURL,
           longitude: myData.longitude,
