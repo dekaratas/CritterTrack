@@ -1,7 +1,22 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from 'react'
 import './MyLibrary.css'
+import 'leaflet/dist/leaflet.css'
+import { useState, useEffect } from 'react'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+
+
+// Latitude (North/South) first
+function Map() {
+  return (
+  <MapContainer center={[-23.0322, 113.715]} zoom={3}>
+    <TileLayer 
+      url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+  </MapContainer>
+  )
+}
 
 function Entry({ record, onDelete }) {
   const handleDeletion = () => {
@@ -11,18 +26,20 @@ function Entry({ record, onDelete }) {
   return (
     <div className="record">
       <div className="data">
-        <p>Date: {record.date}</p>
+        <div className='imgContainer'>
+          <img src={record.imgURL} alt='leNature'></img>
+        </div>
+        {/* <p>Date: {record.date}</p>
         <p>Vernacular: {record.vernacular}</p>
+        <p>Country: {record.country}</p>
         <p>SST: {record.sst}</p>
         <p>SSS: {record.sss}</p>
         <p>Shoredistance: {record.shoredistance}</p>
         <p>Depth: {record.depth}</p>
         <p>Count: {record.count}</p>
-        <p>ImgUrl: {record.imgURL}</p>
         <p>Longitude: {record.longitude}</p>
         <p>Latitude: {record.latitude}</p>
-        <p>Country: {record.country}</p>
-        <p>Creation: {record.createdAt}</p>
+        <p>Creation: {record.createdAt}</p> */}
       </div>
       <button onClick={handleDeletion}>X</button>
     </div>
@@ -58,6 +75,7 @@ export default function MyLibrary() {
   return (
     <div className="myLibraryContainer">
       <h1>My Previous Sightings</h1>
+      <Map />
       <div className="entryContainer">
         {records.map((record) => (
           <Entry key={record.id} record={record} onDelete={handleDeletion} />

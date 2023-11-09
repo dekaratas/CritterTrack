@@ -10,11 +10,66 @@
   box-shadow:
     rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.entryContainer {
+  display: flex;
+  flex-direction: row;
 }
 
 .record {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  width: 300px;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 1px solid #190061;
+  border-radius: 5px;
+  background-image: url('../../assets/low-poly-grid-haikei (2).svg');
+}
+
+.record button {
+  color: white;
+}
+
+.myLibraryContainer h1 {
+  align-self: center;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+}
+
+.imgContainer {
+  width: 210px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.imgContainer img {
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+/* Leaflet Styles */
+.leaflet-container {
+  height: 300px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;
 }

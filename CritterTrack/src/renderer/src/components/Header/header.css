@@ -25,3 +25,21 @@ h1 {
 .separator {
   color: black;
 }
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px
+}
+
+.logo-container h1 {
+  font-family: 'Reso-bold';
+  color: white;
+}
+
+.logo-container img {
+  max-height: 5vh;
+  align-self: center;
+  margin-bottom: 0;
+}
