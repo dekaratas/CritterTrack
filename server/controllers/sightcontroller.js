@@ -4,34 +4,34 @@ const prisma = new PrismaClient();
 
 //TODO: Implement check if all data is supplied in addNewRecord
 
-async function getAllRecords (req, res) {
+async function getAllRecords(req, res) {
   try {
-  async function main() {
-    const sightings = await prisma.personalSighting.findMany();
-    console.log(sightings);
-    res.status(200).send(sightings);
+    async function main() {
+      const sightings = await prisma.personalSighting.findMany();
+      console.log(sightings);
+      res.status(200).send(sightings);
+    }
+    main()
+      .then(async () => {
+        await prisma.$disconnect();
+      })
+      .catch(async (e) => {
+        console.error(e);
+        await prisma.$disconnect();
+        process.exit(1);
+      });
+  } catch (error) {
+    console.error(error);
   }
-  main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  });
-} catch (error) {
-        console.error(error);
-      }
-};
+}
 
-async function addNewRecord (req, res) {
+async function addNewRecord(req, res) {
   try {
     const newRecord = req.body;
-    async function main (myData) {
+    async function main(myData) {
       const record = await prisma.personalSighting.create({
         data: {
-          date: new Date(),
+          date: myData.date,
           vernacular: myData.vernacular,
           sst: myData.sst,
           sss: myData.sss,
@@ -41,28 +41,26 @@ async function addNewRecord (req, res) {
           imgURL: myData.imgURL,
           longitude: myData.longitude,
           latitude: myData.latitude,
-          country: myData.country
-        }
+          country: myData.country,
+        },
       });
       res.status(201).send(record);
     }
-  main(newRecord)
-    .then(async () => {
-      await prisma.$disconnect()
-    })
-    .catch(async (e) => {
-      console.error(e)
-      await prisma.$disconnect()
-      process.exit(1)
-  });
+    main(newRecord)
+      .then(async () => {
+        await prisma.$disconnect();
+      })
+      .catch(async (e) => {
+        console.error(e);
+        await prisma.$disconnect();
+        process.exit(1);
+      });
   } catch (error) {
     console.error(error);
   }
 }
 
-
-
 module.exports = {
   getAllRecords,
-  addNewRecord
-}
+  addNewRecord,
+};

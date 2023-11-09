@@ -1,6 +1,7 @@
 import ImageUpload from '../ImageUpload/ImageUpload'
 import './AddRecord.css'
 import { useState } from 'react'
+import { formatISO, parseISO, setSeconds, setMilliseconds } from 'date-fns'
 
 // TODO: After creating a species table, have the input field suggest autocompletions
 // TODO: Adjust the input types accordingly
@@ -31,6 +32,7 @@ export default function AddRecord() {
     setInputs(updatedInputs)
   }
 
+  //! Handle change within ImageUpload component and fill url field automatically
   const handleImageChange = (url) => {
     console.log('handleImageChange is called', url)
     const updatedInputs = inputs.map((input) => {
@@ -42,9 +44,32 @@ export default function AddRecord() {
     setInputs(updatedInputs)
   }
 
+  //! Submit form and send to backend db
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Yay', e)
+    // Note: HTMLCollection aka form data is NOT an array...
+    // Bloody behaves like one but regardless, have to turn it into array to map over it
+    const formElementsArray = Array.from(e.target.elements)
+
+    // Filter through all html elements within the form and only get the Input ones
+    const inputFields = formElementsArray.filter((element) => element.tagName === 'INPUT')
+
+    // Populate the data object and jump through major hoops to get properly ISO-8601 time format
+    const data = {}
+    inputFields.forEach((field) => {
+      if (field.id === 'date') {
+        const parsedDate = parseISO(field.value)
+        const updatedDate = setSeconds(parsedDate, 0)
+        const finalDate = setMilliseconds(updatedDate, 0)
+        const formattedDate = formatISO(finalDate)
+        data[field.id] = formattedDate
+      } else {
+        data[field.id] = field.value
+      }
+    })
+    // Stringify my data to prepare it for sendoff
+    const jsonData = JSON.stringify(data)
+    console.log(jsonData)
   }
 
   return (
@@ -55,7 +80,7 @@ export default function AddRecord() {
           {inputs.map((input) => (
             <div className="input-container" key={input.id}>
               <input
-                type={input.id === 'date' ? 'date' : input.type}
+                type={input.id === 'date' ? 'datetime-local' : input.type}
                 id={input.id}
                 required
                 value={input.value}
@@ -72,44 +97,3 @@ export default function AddRecord() {
     </div>
   )
 }
-
-//   <label>
-//   Sea Surface Salinity:
-//   <input type="number" step="any" name="sss" />
-// </label>
-// <label>
-//   Sea Surface Temperature:
-//   <input type="number" step="any" name="sst" />
-// </label>
-// <label>
-//   Date:
-//   <input type="date" name="date" />
-// </label>
-// <label>
-//   Shore Distance:
-//   <input type="number" name="shoredistance" />
-// </label>
-// <label>
-//   Depth:
-//   <input type="number" name="depth" />
-// </label>
-// <label>
-//   Count:
-//   <input type="number" name="count" />
-// </label>
-// <label>
-//   Image URL:
-//   <input type="text" name="imgURL" />
-// </label>
-// <label>
-//   Longitude:
-//   <input type="number" step="any" name="longitude" />
-// </label>
-// <label>
-//   Latitude:
-//   <input type="number" step="any" name="latitude" />
-// </label>
-// <label>
-//   Country:
-//   <input type="text" name="country" />
-// </label>
