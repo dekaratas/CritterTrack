@@ -73,7 +73,7 @@ export default function AddRecord() {
     console.log(jsonData)
 
     const resData = await addNewRecord(jsonData)
-    console.log(resData.data)
+    console.log(resData)
   }
 
   return (
