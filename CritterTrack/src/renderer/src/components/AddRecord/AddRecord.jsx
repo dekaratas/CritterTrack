@@ -22,6 +22,24 @@ export default function AddRecord() {
     { id: 'country', value: '', name: 'Country', type: 'text' }
   ])
 
+  const initialInputs = [
+    { id: 'vernacular', value: '', name: 'Species (Vernacular)', type: 'text' },
+    { id: 'date', value: '', name: 'Date' },
+    { id: 'sss', value: '', name: 'Sea Surface Salinity', type: 'number' },
+    { id: 'sst', value: '', name: 'Sea Surface Temperature', type: 'number' },
+    { id: 'shoredistance', value: '', name: 'Shore Distance', type: 'number' },
+    { id: 'depth', value: '', name: 'Depth', type: 'number' },
+    { id: 'count', value: '', name: 'Count', type: 'number' },
+    { id: 'imgURL', value: '', name: 'Image URL' },
+    { id: 'longitude', value: '', name: 'Longitude', type: 'number' },
+    { id: 'latitude', value: '', name: 'Latitude', type: 'number' },
+    { id: 'country', value: '', name: 'Country', type: 'text' }
+  ]
+
+  const resetInputs = () => {
+    setInputs(initialInputs)
+  }
+
   const handleInputChange = (e, id) => {
     const updatedInputs = inputs.map((input) => {
       if (input.id === id) {
@@ -72,7 +90,11 @@ export default function AddRecord() {
     console.log(jsonData)
 
     const resData = await addNewRecord(jsonData)
-    console.log(resData)
+
+    if (resData) {
+      console.log(resData)
+      resetInputs()
+    }
   }
 
   return (
@@ -86,7 +108,7 @@ export default function AddRecord() {
                 type={input.id === 'date' ? 'datetime-local' : input.type}
                 id={input.id}
                 required
-                value={input.value}
+                value={input.value || ''}
                 onChange={(e) => handleInputChange(e, input.id)}
               />
               <label htmlFor={input.id} className={input.value ? 'float' : ''}>
