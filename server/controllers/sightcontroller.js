@@ -2,8 +2,6 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-//TODO: Implement check if all data is supplied in addNewRecord
-
 async function getAllRecords(req, res) {
   try {
     async function main() {

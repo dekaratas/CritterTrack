@@ -3,6 +3,32 @@ import { useState, useEffect } from 'react'
 import './MyLibrary.css'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
 
+function Entry({ record, onDelete }) {
+  const handleDeletion = () => {
+    onDelete(record.id)
+  }
+
+  return (
+    <div className="record">
+      <div className="data">
+        <p>Date: {record.date}</p>
+        <p>Vernacular: {record.vernacular}</p>
+        <p>SST: {record.sst}</p>
+        <p>SSS: {record.sss}</p>
+        <p>Shoredistance: {record.shoredistance}</p>
+        <p>Depth: {record.depth}</p>
+        <p>Count: {record.count}</p>
+        <p>ImgUrl: {record.imgURL}</p>
+        <p>Longitude: {record.longitude}</p>
+        <p>Latitude: {record.latitude}</p>
+        <p>Country: {record.country}</p>
+        <p>Creation: {record.createdAt}</p>
+      </div>
+      <button onClick={handleDeletion}>X</button>
+    </div>
+  )
+}
+
 export default function MyLibrary() {
   const [records, setRecords] = useState([])
 
@@ -18,10 +44,12 @@ export default function MyLibrary() {
     fetchRecords()
   }, [])
 
-  const handleDeletion = (id) => (e) => {
+  const handleDeletion = async (id) => async (e) => {
     try {
       e.preventDefault()
       deleteRecordById(id)
+      const data = await getMyRecords()
+      setRecords(data)
     } catch (error) {
       console.error('Error deleting record:', error)
     }
@@ -32,21 +60,7 @@ export default function MyLibrary() {
       <h1>My Previous Sightings</h1>
       <div className="entryContainer">
         {records.map((record) => (
-          <div key={record.id} className="record">
-            <p>Date: {record.date}</p>
-            <p>Vernacular: {record.vernacular}</p>
-            <p>SST: {record.sst}</p>
-            <p>SSS: {record.sss}</p>
-            <p>Shoredistance: {record.shoredistance}</p>
-            <p>Depth: {record.depth}</p>
-            <p>Count: {record.count}</p>
-            <p>ImgUrl: {record.imgURL}</p>
-            <p>Longitude: {record.longitude}</p>
-            <p>Latitude: {record.latitude}</p>
-            <p>Country: {record.country}</p>
-            <p>Creation: {record.createdAt}</p>
-            <button onClick={handleDeletion(record.id)}>X</button>
-          </div>
+          <Entry key={record.id} record={record} onDelete={handleDeletion} />
         ))}
       </div>
     </div>
