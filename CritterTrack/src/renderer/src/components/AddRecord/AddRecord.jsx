@@ -50,6 +50,7 @@ export default function AddRecord() {
               </label>
             </div>
           ))}
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>
