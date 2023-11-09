@@ -1,0 +1,1 @@
+import postImageAxios from './axiosInstances'
