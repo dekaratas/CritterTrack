@@ -7,7 +7,7 @@ import { formatISO, parseISO, setSeconds, setMilliseconds } from 'date-fns'
 
 // TODO: After creating a species table, have the input field suggest autocompletions
 
-export default function AddRecord({ viewState }) {
+export default function AddRecord() {
   const [inputs, setInputs] = useState([
     { id: 'vernacular', value: '', name: 'Species (Vernacular)', type: 'text' },
     { id: 'date', value: '', name: 'Date' },
