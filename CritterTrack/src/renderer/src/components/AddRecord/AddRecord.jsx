@@ -3,8 +3,8 @@ import { useState } from 'react'
 
 export default function AddRecord() {
   const [inputs, setInputs] = useState([
-    { id: 'vernacular', value: '', name: 'Common Name' },
-    { id: 'date', value: '', name: 'Date' },
+    { id: 'vernacular', value: '', name: 'Species (Vernacular)*' },
+    { id: 'date', value: '', name: 'Date*' },
     { id: 'sss', value: '', name: 'Sea Surface Salinity' },
     { id: 'sst', value: '', name: 'Sea Surface Temperature' },
     { id: 'shoredistance', value: '', name: 'Shore Distance' },
