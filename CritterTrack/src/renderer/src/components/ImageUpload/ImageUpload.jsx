@@ -25,13 +25,18 @@ export default function ImageUpload() {
   }
 
   async function handleUpload() {
-    console.log(imageUrl)
-    const formattedBase64Image = imageUrl.split(',')[1]
-    const formData = new FormData()
-    formData.append('image', formattedBase64Image)
-    formData.append('type', 'base64')
+    try {
+      console.log(imageUrl)
+      const formattedBase64Image = imageUrl.split(',')[1]
+      const formData = new FormData()
+      formData.append('image', formattedBase64Image)
+      formData.append('type', 'base64')
 
-    await uploadImage(formData)
+      const resData = await uploadImage(formData)
+      console.log('Great success: ', resData.data.link)
+    } catch (err) {
+      console.error('Error uploading: ', err)
+    }
   }
 
   return (
