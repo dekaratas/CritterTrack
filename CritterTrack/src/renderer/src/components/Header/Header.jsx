@@ -14,7 +14,7 @@ export default function Header({ onComponentChange }) {
         <h1 className="library">My Library</h1>
       </button>
       <h1 className="separator">|</h1>
-      <button>
+      <button onClick={() => handleButtonClick('critterSearch')}>
         <h1 className="search">CritterSearch</h1>
       </button>
       <h1 className="separator">|</h1>
@@ -22,7 +22,7 @@ export default function Header({ onComponentChange }) {
         <h1 className="addrecord">Add new Record</h1>
       </button>
       <h1 className="separator">|</h1>
-      <button>
+      <button onClick={() => handleButtonClick('settings')}>
         <h1 className="settings">Settings</h1>
       </button>
     </div>

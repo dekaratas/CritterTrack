@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ImageUpload from '../ImageUpload/ImageUpload'
 import addNewRecord from '../../services/apiClientService'
 import './AddRecord.css'
@@ -5,10 +6,8 @@ import { useState } from 'react'
 import { formatISO, parseISO, setSeconds, setMilliseconds } from 'date-fns'
 
 // TODO: After creating a species table, have the input field suggest autocompletions
-// TODO: Adjust the input types accordingly
-// TODO: Try to do something about the Date label blocking the mm/dd/yyyy, looks a wee bit ugly
 
-export default function AddRecord() {
+export default function AddRecord({ viewState }) {
   const [inputs, setInputs] = useState([
     { id: 'vernacular', value: '', name: 'Species (Vernacular)', type: 'text' },
     { id: 'date', value: '', name: 'Date' },
@@ -77,7 +76,13 @@ export default function AddRecord() {
   }
 
   return (
-    <div className="addRecordContainer">
+    <div
+      className={
+        viewState === 'addRecord'
+          ? 'addRecordContainer itsThere'
+          : 'addRecordContainer itsThere itsGone'
+      }
+    >
       <ImageUpload onImageUpload={handleImageChange} />
       <div className="form-container">
         <form action="" onSubmit={handleSubmit}>
@@ -96,7 +101,7 @@ export default function AddRecord() {
             </div>
           ))}
           <button type="submit" className="submit-btn">
-            Submit
+            Submit{viewState}
           </button>
         </form>
       </div>
