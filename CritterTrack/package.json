@@ -21,7 +21,9 @@
     "@electron-toolkit/utils": "^2.0.0",
     "axios": "^1.6.1",
     "date-fns": "^2.30.0",
-    "electron-updater": "^6.1.1"
+    "electron-updater": "^6.1.1",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.1",
