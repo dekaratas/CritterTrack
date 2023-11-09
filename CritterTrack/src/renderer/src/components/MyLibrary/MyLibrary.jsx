@@ -4,7 +4,7 @@ import './MyLibrary.css'
 import 'leaflet/dist/leaflet.css'
 import { useState, useEffect } from 'react'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer} from 'react-leaflet'
 
 
 // Latitude (North/South) first
@@ -12,7 +12,10 @@ function Map() {
   return (
   <MapContainer center={[-23.0322, 113.715]} zoom={3}>
     <TileLayer 
-      url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+      url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg"
+    />
+    <TileLayer
+      url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png" 
     />
   </MapContainer>
   )
@@ -74,7 +77,7 @@ export default function MyLibrary() {
 
   return (
     <div className="myLibraryContainer">
-      <h1>My Previous Sightings</h1>
+      <h1>My Records</h1>
       <Map />
       <div className="entryContainer">
         {records.map((record) => (
