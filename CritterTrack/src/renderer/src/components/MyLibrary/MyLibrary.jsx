@@ -1,6 +1,44 @@
 /* eslint-disable react/prop-types */
+import { useState, useEffect } from 'react'
 import './MyLibrary.css'
+import { getMyRecords } from '../../services/apiClientService'
 
 export default function MyLibrary() {
-  return <div className={'myLibraryContainer itsThere'}></div>
+  const [records, setRecords] = useState([])
+
+  useEffect(() => {
+    async function fetchRecords() {
+      try {
+        const data = await getMyRecords()
+        setRecords(data)
+      } catch (error) {
+        console.error('Error fetching records: ', error)
+      }
+    }
+    fetchRecords()
+  }, [])
+
+  return (
+    <div className="myLibraryContainer">
+      <h1>My Previous Sightings</h1>
+      <div className="entryContainer">
+        {records.map((record) => (
+          <div key={record.id} className="record">
+            <p>Date: {record.date}</p>
+            <p>Vernacular: {record.vernacular}</p>
+            <p>SST: {record.sst}</p>
+            <p>SSS: {record.sss}</p>
+            <p>Shoredistance: {record.shoredistance}</p>
+            <p>Depth: {record.depth}</p>
+            <p>Count: {record.count}</p>
+            <p>ImgUrl: {record.imgURL}</p>
+            <p>Longitude: {record.longitude}</p>
+            <p>Latitude: {record.latitude}</p>
+            <p>Country: {record.country}</p>
+            <p>Creation: {record.createdAt}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }

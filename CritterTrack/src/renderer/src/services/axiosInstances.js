@@ -11,11 +11,16 @@ export const postImageAxios = axios.create({
   }
 })
 
-// Axios Instance to interact with my backend
+// Axios Instance to post entries to backend
 export const apiServerAxios = axios.create({
   baseURL: 'http://localhost:3001/addsight',
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json'
   }
+})
+
+export const apiGetServerAxios = axios.create({
+  baseURL: 'http://localhost:3001/sights',
+  timeout: 5000
 })
