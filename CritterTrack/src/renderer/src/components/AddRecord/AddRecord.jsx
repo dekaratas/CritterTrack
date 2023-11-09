@@ -1,3 +1,4 @@
+import ImageUpload from '../ImageUpload/ImageUpload'
 import './AddRecord.css'
 import { useState } from 'react'
 
@@ -28,7 +29,7 @@ export default function AddRecord() {
 
   return (
     <div className="addRecordContainer">
-      <div className="imageContainer">IMAGE</div>
+      <ImageUpload />
       <div className="form-container">
         <form action="">
           {inputs.map((input) => (

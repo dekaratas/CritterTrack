@@ -3,7 +3,7 @@
 .addRecordContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background-image: linear-gradient(to bottom right, #3500d3, #190061);
   width: 80vw;
   height: 70vh;
