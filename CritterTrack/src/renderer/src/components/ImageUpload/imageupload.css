@@ -6,8 +6,9 @@
 }
 
 img {
-  width: 64px;
+  max-width: 250px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 button {
@@ -17,7 +18,7 @@ button {
 }
 
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   cursor: pointer;
 }
 
