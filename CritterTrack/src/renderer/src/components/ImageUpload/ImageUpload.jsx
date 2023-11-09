@@ -4,6 +4,8 @@ import './imageupload.css'
 import { useState } from 'react'
 import uploadImage from '../../services/imageUploadService'
 import convertImageToBase64 from '../../Utils/imageConverter'
+import arrowUp from '../../assets/icons8-chevron-up-24.png'
+import arrowDown from '../../assets/icons8-chevron-down-24.png'
 
 // TODO: Fix image mess when cancelling the image selection
 
@@ -46,8 +48,16 @@ export default function ImageUpload({ onImageUpload }) {
       <button onClick={onOpenFileClick}>
         <img src={imageUrl ? imageUrl : addImage} alt="imageAdd" />
       </button>
-      <h1 className="upload-instruct">Select your image here!</h1>
-      <button onClick={handleUpload}>Upload to imgur!</button>
+      <img src={arrowUp} alt="arrowup" className="arrow" />
+      <h1 className="upload-instruct">
+        1. Select your image!
+        <br />
+        2. Upload it to imgur!
+      </h1>
+      <img src={arrowDown} alt="arrowdown" className="arrow" />
+      <button onClick={handleUpload} className="upload-btn">
+        Upload
+      </button>
     </div>
   )
 }
