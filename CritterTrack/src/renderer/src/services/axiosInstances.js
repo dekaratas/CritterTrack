@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 // Axios Instace to upload to Imgur
-const postImageAxios = axios.create({
+export const postImageAxios = axios.create({
   baseURL: 'https://api.imgur.com/3/upload',
   timeout: 5000,
   headers: {
@@ -12,9 +12,10 @@ const postImageAxios = axios.create({
 })
 
 // Axios Instance to interact with my backend
-const apiServerAxios = axios.create({
-  baseURL: 'http://localhost:3001',
-  timeout: 5000
+export const apiServerAxios = axios.create({
+  baseURL: 'http://localhost:3001/addsight',
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'application/json'
+  }
 })
-
-export default postImageAxios
