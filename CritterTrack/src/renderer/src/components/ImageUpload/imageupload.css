@@ -11,19 +11,27 @@ img {
   cursor: pointer;
 }
 
-button {
+button,
+button h1 {
   border: none;
   background-color: transparent;
-  transition: 0.1s;
+  transition:
+    color 0.5s,
+    transform 0.1s;
 }
 
 button:hover {
-  transform: scale(1.03);
   cursor: pointer;
 }
 
+button:hover h1 {
+  cursor: pointer;
+  transform: translateY(-2px);
+  color: white;
+}
+
 button:active {
-  transform: translateY(6px);
+  transform: translateY(10px);
 }
 
 .upload-instruct {
