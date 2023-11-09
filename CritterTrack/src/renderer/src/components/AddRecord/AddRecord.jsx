@@ -101,7 +101,7 @@ export default function AddRecord({ viewState }) {
             </div>
           ))}
           <button type="submit" className="submit-btn">
-            Submit{viewState}
+            Submit
           </button>
         </form>
       </div>
