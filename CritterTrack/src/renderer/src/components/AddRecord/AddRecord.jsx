@@ -76,13 +76,7 @@ export default function AddRecord({ viewState }) {
   }
 
   return (
-    <div
-      className={
-        viewState === 'addRecord'
-          ? 'addRecordContainer itsThere'
-          : 'addRecordContainer itsThere itsGone'
-      }
-    >
+    <div className={'addRecordContainer'}>
       <ImageUpload onImageUpload={handleImageChange} />
       <div className="form-container">
         <form action="" onSubmit={handleSubmit}>

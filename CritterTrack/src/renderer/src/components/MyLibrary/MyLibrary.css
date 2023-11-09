@@ -10,11 +10,9 @@
   box-shadow:
     rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  transform: translateY(150px);
-  display: none;
 }
 
-.myLibraryContainer.itsThere {
+/* .myLibraryContainer.itsThere {
   position: initial;
   transition: transform 2s ease-in-out;
   display: inline-block;
@@ -23,4 +21,4 @@
 .myLibraryContainer.itsThere.itsGone {
   transform: translateY(150%);
   display: none;
-}
+} */

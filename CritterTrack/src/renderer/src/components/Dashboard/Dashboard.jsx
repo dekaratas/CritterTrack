@@ -7,7 +7,6 @@ import MyLibrary from '../MyLibrary/MyLibrary'
 export default function Dashboard() {
   const [viewState, setViewState] = useState('addRecord')
 
-  // TODO: Use handleComponentChange to delay the view change and slide the components in and out
   const handleComponentChange = (component) => {
     console.log(viewState)
     setViewState(component)
@@ -17,8 +16,8 @@ export default function Dashboard() {
   return (
     <div className="dashboardContainer">
       <Header onComponentChange={handleComponentChange} />
-      <AddRecord viewState={viewState} />
-      <MyLibrary viewState={viewState} />
+      {viewState == 'addRecord' && <AddRecord />}
+      {viewState == 'myLibrary' && <MyLibrary />}
     </div>
   )
 }

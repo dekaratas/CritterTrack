@@ -17,14 +17,14 @@
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-.itsThere {
+/* .addRecordContainer.itsThere {
   position: initial;
   transition: transform 2s ease-in-out;
 }
 
-.itsThere.itsGone {
+.addRecordContainer.itsThere.itsGone {
   transform: translateY(150%);
-}
+} */
 
 .form-container {
   width: 75%;
