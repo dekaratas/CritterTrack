@@ -91,8 +91,6 @@ input {
 
 input:focus {
   outline: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #282828;
 }
 
 input:focus + label {
@@ -104,12 +102,18 @@ input.is-valid + label {
   transform: translateY(-100%) scale(0.75);
 }
 
-footer {
-  text-align: center;
-  padding: 0.5rem 0;
-  background-color: #eaeaea90;
+/* Make date label float by default so it doesnt clash with the date input */
+#date + label {
+  transform: translateY(-100%) scale(0.75);
 }
 
 label.float {
   transform: translateY(-100%) scale(0.75);
+}
+
+/* Get rid of spin buttons for number fields */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -3,6 +3,8 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
+// My Handler function for opening a dialog and returning the file path if not canceled
+// TODO: Fix issue where, when canceled, not even the standard image is displayed
 async function handleFileOpen() {
   const { canceled, filePaths } = await dialog.showOpenDialog({})
   if (!canceled) {

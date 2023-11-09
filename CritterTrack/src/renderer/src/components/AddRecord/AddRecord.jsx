@@ -8,17 +8,17 @@ import { useState } from 'react'
 
 export default function AddRecord() {
   const [inputs, setInputs] = useState([
-    { id: 'vernacular', value: '', name: 'Species (Vernacular)*' },
-    { id: 'date', value: '', name: 'Date*' },
-    { id: 'sss', value: '', name: 'Sea Surface Salinity' },
-    { id: 'sst', value: '', name: 'Sea Surface Temperature' },
-    { id: 'shoredistance', value: '', name: 'Shore Distance' },
-    { id: 'depth', value: '', name: 'Depth' },
-    { id: 'count', value: '', name: 'Count' },
+    { id: 'vernacular', value: '', name: 'Species (Vernacular)', type: 'text' },
+    { id: 'date', value: '', name: 'Date' },
+    { id: 'sss', value: '', name: 'Sea Surface Salinity', type: 'number' },
+    { id: 'sst', value: '', name: 'Sea Surface Temperature', type: 'number' },
+    { id: 'shoredistance', value: '', name: 'Shore Distance', type: 'number' },
+    { id: 'depth', value: '', name: 'Depth', type: 'number' },
+    { id: 'count', value: '', name: 'Count', type: 'number' },
     { id: 'imgURL', value: '', name: 'Image URL' },
-    { id: 'longitude', value: '', name: 'Longitude' },
-    { id: 'latitude', value: '', name: 'Latitude' },
-    { id: 'country', value: '', name: 'Country' }
+    { id: 'longitude', value: '', name: 'Longitude', type: 'number' },
+    { id: 'latitude', value: '', name: 'Latitude', type: 'number' },
+    { id: 'country', value: '', name: 'Country', type: 'text' }
   ])
 
   const handleInputChange = (e, id) => {
@@ -42,15 +42,20 @@ export default function AddRecord() {
     setInputs(updatedInputs)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('Yay', e)
+  }
+
   return (
     <div className="addRecordContainer">
       <ImageUpload onImageUpload={handleImageChange} />
       <div className="form-container">
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
           {inputs.map((input) => (
             <div className="input-container" key={input.id}>
               <input
-                type={input.id === 'date' ? 'date' : 'text'}
+                type={input.id === 'date' ? 'date' : input.type}
                 id={input.id}
                 required
                 value={input.value}
