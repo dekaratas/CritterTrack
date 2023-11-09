@@ -28,6 +28,18 @@ async function getAllRecords(req, res) {
 async function addNewRecord(req, res) {
   try {
     const newRecord = req.body;
+
+    const transformedRecord = {
+      ...newRecord,
+      sst: parseFloat(newRecord.sst),
+      sss: parseFloat(newRecord.sss),
+      shoredistance: parseFloat(newRecord.shoredistance),
+      depth: parseFloat(newRecord.depth),
+      count: parseInt(newRecord.count, 10),
+      latitude: parseFloat(newRecord.latitude),
+      longitude: parseFloat(newRecord.longitude),
+    };
+
     async function main(myData) {
       const record = await prisma.personalSighting.create({
         data: {
@@ -46,7 +58,7 @@ async function addNewRecord(req, res) {
       });
       res.status(201).send(record);
     }
-    main(newRecord)
+    main(transformedRecord)
       .then(async () => {
         await prisma.$disconnect();
       })

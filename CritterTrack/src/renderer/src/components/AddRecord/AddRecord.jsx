@@ -1,4 +1,5 @@
 import ImageUpload from '../ImageUpload/ImageUpload'
+import addNewRecord from '../../services/apiClientService'
 import './AddRecord.css'
 import { useState } from 'react'
 import { formatISO, parseISO, setSeconds, setMilliseconds } from 'date-fns'
@@ -45,7 +46,7 @@ export default function AddRecord() {
   }
 
   //! Submit form and send to backend db
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     // Note: HTMLCollection aka form data is NOT an array...
     // Bloody behaves like one but regardless, have to turn it into array to map over it
@@ -70,6 +71,9 @@ export default function AddRecord() {
     // Stringify my data to prepare it for sendoff
     const jsonData = JSON.stringify(data)
     console.log(jsonData)
+
+    const resData = await addNewRecord(jsonData)
+    console.log(resData.data)
   }
 
   return (
