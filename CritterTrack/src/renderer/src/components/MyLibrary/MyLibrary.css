@@ -27,8 +27,9 @@
 
 .record {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column-reverse;
+  align-items: baseline;
+  flex-wrap: wrap;
   width: 300px;
   padding: 5px;
   margin-left: 5px;
@@ -44,8 +45,9 @@
     rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.record button {
+.rmvRecordBtn {
   color: white;
+  align-self: flex-end;
 }
 
 .myLibraryContainer h1 {
@@ -54,7 +56,8 @@
 
 .data {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
 }
 
 .imgContainer {
@@ -100,4 +103,21 @@
 
 .leaflet-control-zoom-out {
   background-color: transparent;
+}
+
+.cardText {
+  color: rgb(199, 194, 194);
+  font-family: 'Reso-Bold';
+  font-size: 15px;
+  margin: auto;
+  text-align: center;
+}
+
+.dateText {
+  color: rgb(199, 194, 194);
+  font-family: 'Reso-Bold';
+  font-size: 15px;
+  position: relative;
+  top: 19px;
+  left: 3px;
 }

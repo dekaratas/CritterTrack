@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import { motion } from 'framer-motion'
+import { format } from 'date-fns'
 
 // Latitude (North/South) first
 function Map() {
@@ -18,9 +19,13 @@ function Map() {
 }
 
 function Entry({ record, onDelete }) {
+  const formattedDate = format(new Date(record.date), "do 'of' MMMM yyyy")
+
   const handleDeletion = () => {
     onDelete(record.id)
   }
+
+  //TODO: For polish, in cardText, change A/An dynamically
 
   return (
     <div className="record">
@@ -28,7 +33,8 @@ function Entry({ record, onDelete }) {
         <div className="imgContainer">
           <img src={record.imgURL} alt="leNature"></img>
         </div>
-        {/* <p>Date: {record.date}</p>
+        {/* Available data 
+        <p>Date: {record.date}</p>
         <p>Vernacular: {record.vernacular}</p>
         <p>Country: {record.country}</p>
         <p>SST: {record.sst}</p>
@@ -39,8 +45,16 @@ function Entry({ record, onDelete }) {
         <p>Longitude: {record.longitude}</p>
         <p>Latitude: {record.latitude}</p>
         <p>Creation: {record.createdAt}</p> */}
+        <div className="cardShort">
+          <p className="cardText">
+            A {record.vernacular} photographed <br /> in {record.country} on <br />
+            the {formattedDate}.
+          </p>
+        </div>
       </div>
-      <button onClick={handleDeletion}>X</button>
+      <button onClick={handleDeletion} className="rmvRecordBtn" title="Delete record permanently?">
+        X
+      </button>
     </div>
   )
 }
