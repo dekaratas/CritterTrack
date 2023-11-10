@@ -80,8 +80,10 @@ export default function AddRecord() {
 
     if (resData) {
       console.log(resData)
-      console.log('Clearing all fields')
+      // Clearing all fields
+      // TODO: Find a better method for success notifications
       resetInputs()
+      alert('Great Success! Your new record was added! 🐬')
     }
   }
 
