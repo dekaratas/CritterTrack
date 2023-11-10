@@ -45,8 +45,11 @@ function Entry({ record, onDelete }) {
   return (
     <div className="record">
       <div className="data">
-        <div className="imgContainer">
-          {/* <img src={record.imgURL} alt="leNature"></img> */}
+        <div
+          className="imgContainer"
+          onMouseEnter={() => setImageFilter(undefined)}
+          onMouseLeave={() => setImageFilter('grayscale')}
+        >
           <ImageFilter image={record.imgURL} alt="leImage" filter={imageFilter} />
         </div>
         {/* Available data 
