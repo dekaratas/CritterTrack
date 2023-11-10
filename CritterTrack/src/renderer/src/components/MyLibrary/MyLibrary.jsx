@@ -4,6 +4,7 @@ import './MyLibrary.css'
 import 'leaflet/dist/leaflet.css'
 import { useState, useEffect } from 'react'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
+import sortRecordsByDate from '../../Utils/recordDateSorter'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { motion } from 'framer-motion'
 import { format } from 'date-fns'
@@ -79,7 +80,8 @@ export default function MyLibrary() {
     async function fetchRecords() {
       try {
         const data = await getMyRecords()
-        setRecords(data)
+        const sortedRecords = sortRecordsByDate(data)
+        setRecords(sortedRecords)
       } catch (error) {
         console.error('Error fetching records: ', error)
       }
@@ -92,7 +94,8 @@ export default function MyLibrary() {
       e.preventDefault()
       deleteRecordById(id)
       const data = await getMyRecords()
-      setRecords(data)
+      const sortedRecords = sortRecordsByDate(data)
+      setRecords(sortedRecords)
     } catch (error) {
       console.error('Error deleting record:', error)
     }
