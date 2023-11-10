@@ -8,6 +8,7 @@ import sortRecordsByDate from '../../Utils/recordDateSorter'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { motion } from 'framer-motion'
 import { format } from 'date-fns'
+import ImageFilter from 'react-image-filter'
 
 // Map component receiving all records including the positional data
 //! Latitude (North/South) first
@@ -31,6 +32,7 @@ function Map({ records }) {
 }
 
 function Entry({ record, onDelete }) {
+  const [imageFilter, setImageFilter] = useState('grayscale')
   const formattedDate = format(new Date(record.date), "do 'of' MMMM yyyy")
 
   // Delete a personal record
@@ -44,7 +46,8 @@ function Entry({ record, onDelete }) {
     <div className="record">
       <div className="data">
         <div className="imgContainer">
-          <img src={record.imgURL} alt="leNature"></img>
+          {/* <img src={record.imgURL} alt="leNature"></img> */}
+          <ImageFilter image={record.imgURL} alt="leImage" filter={imageFilter} />
         </div>
         {/* Available data 
         <p>Date: {record.date}</p>

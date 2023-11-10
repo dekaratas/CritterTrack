@@ -78,6 +78,13 @@
   border-radius: 3px;
 }
 
+.imgContainer.ImageFilter {
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
 .myLibraryContainer h1 {
   font-family: 'Reso-bold';
 }
