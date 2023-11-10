@@ -1,3 +1,4 @@
+// Boilerplate that came with electron vite to demonstrate 'expose in main world'
 import { useState } from 'react'
 
 function Versions() {

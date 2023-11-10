@@ -1,0 +1,58 @@
+.splashButton {
+  width: 15vw;
+  height: 8vh;
+  margin-top: 3vh;
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  color: #66fcf1;
+  font-size: 50px;
+  font-family: 'Montserrat-Subrayada-Bold';
+  text-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+  /* Animation */
+  transition: all 0.2s ease-in-out;
+}
+
+.splashButton:hover {
+  cursor: pointer;
+
+  /* Animation */
+  transform: scale(1.2);
+}
+
+.fade-in-element {
+  opacity: 0;
+  transition: opacity 3s ease;
+}
+
+.fade-in-element.fade-in {
+  opacity: 1;
+}
+
+/* Animation on ButtonPress */
+.itsThere {
+  position: initial;
+  transition: transform 3s ease-in-out;
+}
+
+.itsThere.itsGone {
+  transform: translateY(-150%);
+}
+
+div.startScreen.itsThere {
+  position: absolute;
+  z-index: 3;
+  background-color: #0c0032;
+  width: 1280px;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.startScreen img {
+  width: 29vw;
+  margin-top: 4vh;
+}

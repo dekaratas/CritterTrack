@@ -13,3 +13,13 @@
   font-family: 'Reso-Thin';
   src: url('./fonts/Reso Thin.ttf');
 }
+
+@font-face {
+  font-family: 'Montserrat-Subrayada-Regular';
+  src: url('./fonts/MontserratSubrayada-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat-Subrayada-Bold';
+  src: url('./fonts/MontserratSubrayada-Bold.ttf');
+}

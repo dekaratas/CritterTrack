@@ -5,7 +5,7 @@
   justify-content: center;
 }
 
-img {
+.image-upload-container img {
   max-width: 250px;
   margin-bottom: 10px;
   cursor: pointer;
