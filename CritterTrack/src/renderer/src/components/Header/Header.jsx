@@ -43,7 +43,15 @@ export default function Header({ onComponentChange, state }) {
       </button>
       <h1 className="separator">|</h1>
       <button onClick={() => handleButtonClick('settings')}>
-        <h1 className="settings">Settings</h1>
+        <h1 className="settings" style={underlineStyle('settings')}>
+          Settings
+        </h1>
+      </button>
+      <h1 className="separator">|</h1>
+      <button onClick={() => handleButtonClick('stats')}>
+        <h1 className="stats" style={underlineStyle('stats')}>
+          Statistics
+        </h1>
       </button>
     </div>
   )
