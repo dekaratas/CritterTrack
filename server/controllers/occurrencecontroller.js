@@ -107,7 +107,7 @@ async function createOccurrence(entry, req, res) {
 }
 
 // Only 'create' function to be exported in this file since its sole purpose is to create as much data as possible
-// TODO: Fix node complaining about res.send not being a function in my try/catch statement
+// TODO: Fix node complaining about res.send not being a function in my try/catch statement, replaced those for now
 async function createOccurrences(apiData, req, res) {
   try {
     for (const entry of apiData.body) {
@@ -120,7 +120,7 @@ async function createOccurrences(apiData, req, res) {
   }
 }
 
-// TODO: Figure out if it's best to use their unique IDs or just go with an incrementing one
+// TODO: Figure out if it's best to use the unique IDs or just go with an incrementing index one as PK
 // Deleting via id as endpoint doesn't work when the id is like 00000753-6618-43c7-8875-89a150c39097
 async function deleteOccurrence(req, res) {
   try {

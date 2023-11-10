@@ -1,30 +1,14 @@
 const countryCodes = new Map();
-const fs = require('fs');
+const fs = require("fs");
 
-//* AI managed to messed up the order while writing a simple Map table
-//* And there's probably an easy way to reverse the values
-//* But I like verbose
+//* AI managed to messed up the order while writing a simple Map table, I need to call get on the country CODE
+//* And there's probably an easy way to reverse the values but I can't find one rn
 // countryCodes.set("Afghanistan", "AFG");
 // countryCodes.set("Albania", "ALB");
 // countryCodes.set("Algeria", "DZA");
-// countryCodes.set("American Samoa", "ASM");
-// countryCodes.set("Andorra", "AND");
-// countryCodes.set("Angola", "AGO");
-// countryCodes.set("Anguilla", "AIA");
-// countryCodes.set("Antarctica", "ATA");
-// countryCodes.set("Antigua and Barbuda", "ATG");
-// countryCodes.set("Argentina", "ARG");
-// countryCodes.set("Armenia", "ARM");
-// countryCodes.set("Aruba", "ABW");
-// countryCodes.set("Australia", "AUS");
-// countryCodes.set("Austria", "AUT");
-// countryCodes.set("Azerbaijan", "AZE");
-// countryCodes.set("Bahamas (the)", "BHS");
-// countryCodes.set("Bahrain", "BHR");
 // and so on...
 
-
-//! Don't really need this code anymore but I'm happy it worked so I'll just comment it out and leave it
+// Don't really need this code anymore but I'm happy it worked so I'll just comment it out and leave it
 // let arrCode = []
 // let arrName = [];
 // for (const x of countryCodes.values()) {
@@ -36,7 +20,6 @@ const fs = require('fs');
 // for (let i = 0; i < arrCode.length; i++) {
 //   fs.appendFileSync('./CountryHashTable.js', `countryCodes.set("${arrCode[i]}", "${arrName[i]}");\n`);
 // }
-
 
 countryCodes.set("AFG", "Afghanistan");
 countryCodes.set("ALB", "Albania");
@@ -271,7 +254,10 @@ countryCodes.set("TUV", "Tuvalu");
 countryCodes.set("UGA", "Uganda");
 countryCodes.set("UKR", "Ukraine");
 countryCodes.set("ARE", "United Arab Emirates (the)");
-countryCodes.set("GBR", "United Kingdom of Great Britain and Northern Ireland (the)");
+countryCodes.set(
+  "GBR",
+  "United Kingdom of Great Britain and Northern Ireland (the)"
+);
 countryCodes.set("UMI", "United States Minor Outlying Islands (the)");
 countryCodes.set("USA", "United States of America (the)");
 countryCodes.set("URY", "Uruguay");
@@ -288,7 +274,6 @@ countryCodes.set("ZMB", "Zambia");
 countryCodes.set("ZWE", "Zimbabwe");
 countryCodes.set("ALA", "Åland Islands");
 
-
 module.exports = {
-  countryCodes
-}
+  countryCodes,
+};
