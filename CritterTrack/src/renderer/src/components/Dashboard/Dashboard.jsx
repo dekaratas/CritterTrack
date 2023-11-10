@@ -6,6 +6,7 @@ import MyLibrary from '../MyLibrary/MyLibrary'
 import Home from '../Home/Home'
 import Settings from '../Settings/Settings'
 import CritterSearch from '../CritterSearch/CritterSearch'
+import Statistics from '../Statistics/Statistics'
 
 export default function Dashboard() {
   const [viewState, setViewState] = useState('myHome')
@@ -24,6 +25,7 @@ export default function Dashboard() {
       {viewState == 'myHome' && <Home />}
       {viewState == 'settings' && <Settings />}
       {viewState == 'critterSearch' && <CritterSearch />}
+      {viewState == 'stats' && <Statistics />}
     </div>
   )
 }

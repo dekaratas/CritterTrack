@@ -25,7 +25,8 @@
     "framer-motion": "^10.16.4",
     "leaflet": "^1.9.4",
     "react-image-filter": "^0.1.2",
-    "react-leaflet": "^4.2.1"
+    "react-leaflet": "^4.2.1",
+    "victory": "^36.6.12"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.1",
