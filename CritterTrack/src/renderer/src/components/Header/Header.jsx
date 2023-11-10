@@ -19,7 +19,11 @@ export default function Header({ onComponentChange, state }) {
     <div className="headerContainer">
       <div className="logo-container">
         <img src={nauti} alt="nauti" onClick={handleImageClick} id="nauti" />
-        <h1 className="logo">CritterTrack</h1>
+        <button onClick={() => handleButtonClick('myHome')}>
+          <h1 className="logo" style={underlineStyle('myHome')}>
+            CritterTrack
+          </h1>
+        </button>
       </div>
       <h1 className="separator">|</h1>
       <button onClick={() => handleButtonClick('myLibrary')}>
