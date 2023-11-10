@@ -10,7 +10,7 @@ export default async function addNewRecord(data) {
     const response = await apiServerAxios.post('', data)
     return response.data
   } catch (error) {
-    console.error('There has been an issue with submitting your data: ', error)
+    console.error('There has been an issue submitting your data: ', error)
   }
 }
 
@@ -32,7 +32,7 @@ export async function deleteRecordById(id) {
   }
 }
 
-// Get Data from OBIS API
+// Get Data from OBIS API by modifying the query of the endpoint
 export async function getOccurrences(query) {
   try {
     const response = await obisGetOccurrencesAxios.get(`${query}`)
