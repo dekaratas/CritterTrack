@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import { useState, useEffect } from 'react'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
 import { MapContainer, TileLayer } from 'react-leaflet'
+import { motion } from 'framer-motion'
 
 // Latitude (North/South) first
 function Map() {
@@ -69,16 +70,16 @@ export default function MyLibrary() {
       console.error('Error deleting record:', error)
     }
   }
-
+  //TODO: Polish the dragging idea/feature, bit crude rn
   return (
     <div className="myLibraryContainer">
       <h1>My Records</h1>
       <Map />
-      <div className="entryContainer">
+      <motion.div className="entryContainer" drag="x">
         {records.map((record) => (
           <Entry key={record.id} record={record} onDelete={handleDeletion} />
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }

@@ -21,6 +21,10 @@
   flex-direction: row;
 }
 
+.entryContainer:hover {
+  cursor: pointer;
+}
+
 .record {
   display: flex;
   flex-direction: row;
@@ -77,7 +81,7 @@
 
 /* Leaflet Styles */
 .leaflet-container {
-  height: 350px;
+  height: 340px;
   width: 99%;
   margin-left: auto;
   margin-right: auto;
