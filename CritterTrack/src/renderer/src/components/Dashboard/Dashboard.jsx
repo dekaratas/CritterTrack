@@ -8,7 +8,7 @@ import Settings from '../Settings/Settings'
 import CritterSearch from '../CritterSearch/CritterSearch'
 
 export default function Dashboard() {
-  const [viewState, setViewState] = useState('addRecord')
+  const [viewState, setViewState] = useState('myHome')
 
   const handleComponentChange = (component) => {
     console.log(viewState)

@@ -4,20 +4,15 @@ import './MyLibrary.css'
 import 'leaflet/dist/leaflet.css'
 import { useState, useEffect } from 'react'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
-import { MapContainer, TileLayer} from 'react-leaflet'
-
+import { MapContainer, TileLayer } from 'react-leaflet'
 
 // Latitude (North/South) first
 function Map() {
   return (
-  <MapContainer center={[-23.0322, 113.715]} zoom={3}>
-    <TileLayer 
-      url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg"
-    />
-    <TileLayer
-      url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png" 
-    />
-  </MapContainer>
+    <MapContainer center={[-23.0322, 113.715]} zoom={3}>
+      <TileLayer url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg" />
+      <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png" />
+    </MapContainer>
   )
 }
 
@@ -29,8 +24,8 @@ function Entry({ record, onDelete }) {
   return (
     <div className="record">
       <div className="data">
-        <div className='imgContainer'>
-          <img src={record.imgURL} alt='leNature'></img>
+        <div className="imgContainer">
+          <img src={record.imgURL} alt="leNature"></img>
         </div>
         {/* <p>Date: {record.date}</p>
         <p>Vernacular: {record.vernacular}</p>
