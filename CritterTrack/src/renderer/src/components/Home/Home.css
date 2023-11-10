@@ -1,6 +1,6 @@
 .homeContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   background-image: linear-gradient(to bottom right, #3500d3, #190061);
   width: 80vw;
@@ -23,4 +23,12 @@
 .homeContainer h1 {
   font-family: 'Reso-Bold';
   color: white;
+}
+
+.homeContainer button {
+  width: 200px;
+  height: 5vh;
+  background-color: #190061;
+  color: white;
+  font-family: 'Reso-Regular';
 }

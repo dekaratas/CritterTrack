@@ -7,7 +7,7 @@ import convertImageToBase64 from '../../Utils/imageConverter'
 import arrowUp from '../../assets/icons8-chevron-up-24.png'
 import arrowDown from '../../assets/icons8-chevron-down-24.png'
 
-// TODO: Fix image mess when cancelling the image selection
+//! Image Upload does only work on Preview Server, not Dev Server
 
 export default function ImageUpload({ onImageUpload }) {
   const [imageUrl, setImageUrl] = useState('')

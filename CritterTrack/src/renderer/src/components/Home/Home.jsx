@@ -3,10 +3,10 @@
 // Temporary using Empty Welcome screen to get my database filled
 import './Home.css'
 import { getOccurrences } from '../../services/apiClientService'
-import { useState } from 'react'
+// import { useState } from 'react'
 
 export default function Home() {
-  const [responseData, setResponseData] = useState('')
+  // const [responseData, setResponseData] = useState('')
 
   const handleButtonClick = () => {
     const delayInSeconds = 2
@@ -19,8 +19,12 @@ export default function Home() {
       const query = `?startdate=${startDate}&enddate=${endDate}&size=5`
 
       const data = await getOccurrences(query)
-      setResponseData(data)
-      currentDate.setDate(currentDate.getDate() - 1)
+      // Need to set keys, otherwise electron, rather react complains...this isn't user feature so whatever
+      // setResponseData(data)
+      console.log(data)
+      console.log(data.results[0] || null)
+      console.log(data.results.map((entry) => console.log(entry.id)))
+      currentDate.setDate(currentDate.getDate() - 10)
     }, delayInSeconds * 1000)
   }
   return (
@@ -31,7 +35,7 @@ export default function Home() {
         Im using it to fill my db and move onto charts and graphs
       </h1>
       <button onClick={handleButtonClick}>Lets get this started!</button>
-      <p>{responseData}</p>
+      {/* <p>{responseData}</p> */}
     </div>
   )
 }
