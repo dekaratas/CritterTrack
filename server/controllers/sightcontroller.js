@@ -2,6 +2,9 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
+// Not entirely sure yet if main function is needed/best practice
+// Seen examples that are verbose like this and others which just use base queries
+
 async function getAllRecords(req, res) {
   try {
     async function main() {

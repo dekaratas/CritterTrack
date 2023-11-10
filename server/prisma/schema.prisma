@@ -9,21 +9,60 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-// My current models for both sightings and individual Species
+// My current models for both PersonalSightings and for the to-be-retreived Occurrences
 model PersonalSighting {
-  id Int @id @default(autoincrement())
-  date DateTime
-  vernacular String
-  sst Float
-  sss Float
+  id            Int      @id @default(autoincrement())
+  date          DateTime
+  vernacular    String
+  sst           Float
+  sss           Float
   shoredistance Int
-  depth Int?
-  count Int
-  imgURL String
-  longitude Float
-  latitude Float
-  country String?
-  createdAt DateTime @default(now())
+  depth         Int?
+  count         Int
+  imgURL        String
+  longitude     Float
+  latitude      Float
+  country       String
+  createdAt     DateTime @default(now())
 }
 
+model Occurrence {
+  id                            String      @id
+  createdAt                     DateTime @default(now())
+  basisOfRecord                 String?
+  datasetName                   String?
+  dataset_id                    String?
+  scientificName                String?
+  originalScientificName        String?
+  vernacularName                String?
+  decimalLatitude               Float?
+  decimalLongitude              Float?
+  coordinateUncertaintyInMeters String?
+  country                       String?
+  sex                           String?
+  locality                      String?
+  waterBody                     String?
+  sst                           Float?
+  sss                           Float?
+  habitat                       String?
+  eventDate                     DateTime?
+  date_start                    DateTime?
+  eventID                       String?
+  occurrenceID                  String?
+  minimumDepthInMeters          Int?
+  maximumDepthInMeters          Int?
+  depth                         Float?
+  organismQuantity              Int?
+  individualCount               Float?
+  recordedBy                    String?
+  shoredistance                 Int?
+  marine                        Boolean?
+  brackish                      Boolean?
+  flags                         String[]
+  category                      String?
+}
+  // air_pressure                  String?
+  // botTemp                       Float?
+  // botSal                        Float?
+  // forkLength                    Int?
+  // weight                        Int?
