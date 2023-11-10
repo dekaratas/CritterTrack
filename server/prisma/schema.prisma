@@ -9,7 +9,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// My current models for both PersonalSightings and for the to-be-retreived Occurrences
+// My current models for both PersonalSightings and for the to-be-retrieved Occurrences
+// More models will follow but those two are the most important ones.
+// Occurrence is visibly somewhat haphazardly put together, mainly because I was
+// intimidated by the amount of data I'll have to sort
 model PersonalSighting {
   id            Int      @id @default(autoincrement())
   date          DateTime
@@ -61,9 +64,9 @@ model Occurrence {
   flags                         String[]
   category                      String?
 }
-  //! To be added
+  //! To be added sometime this weekend so we can have some actual data to work with on the front
   // air_pressure                  String?
   // botTemp                       Float?
   // botSal                        Float?
   // forkLength                    Int?
-  // weight                        Int?
+  // weight and more               Int?
