@@ -9,9 +9,9 @@ export default function Header({ onComponentChange }) {
 
   return (
     <div className="headerContainer">
-      <div className='logo-container'>
-        <img src={nauti} alt='nauti' />
-      <h1 className="logo">CritterTrack</h1>
+      <div className="logo-container">
+        <img src={nauti} alt="nauti" />
+        <h1 className="logo">CritterTrack</h1>
       </div>
       <h1 className="separator">|</h1>
       <button onClick={() => handleButtonClick('myLibrary')}>
