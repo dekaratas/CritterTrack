@@ -2,10 +2,14 @@
 import './header.css'
 import nauti from '../../assets/icons8-nautilus-50.png'
 
-export default function Header({ onComponentChange }) {
+export default function Header({ onComponentChange, state }) {
   const handleButtonClick = (component) => {
     onComponentChange(component)
   }
+
+  const underlineStyle = (component) => ({
+    textDecoration: state === component ? 'underline' : 'none'
+  })
 
   return (
     <div className="headerContainer">
@@ -15,7 +19,9 @@ export default function Header({ onComponentChange }) {
       </div>
       <h1 className="separator">|</h1>
       <button onClick={() => handleButtonClick('myLibrary')}>
-        <h1 className="library">My Library</h1>
+        <h1 className="library" style={underlineStyle('myLibrary')}>
+          My Library
+        </h1>
       </button>
       <h1 className="separator">|</h1>
       <button onClick={() => handleButtonClick('critterSearch')}>
@@ -23,7 +29,9 @@ export default function Header({ onComponentChange }) {
       </button>
       <h1 className="separator">|</h1>
       <button onClick={() => handleButtonClick('addRecord')}>
-        <h1 className="addrecord">Add new Record</h1>
+        <h1 className="addrecord" style={underlineStyle('addRecord')}>
+          Add new Record
+        </h1>
       </button>
       <h1 className="separator">|</h1>
       <button onClick={() => handleButtonClick('settings')}>

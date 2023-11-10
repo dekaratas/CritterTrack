@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   return (
     <div className="dashboardContainer">
-      <Header onComponentChange={handleComponentChange} />
+      <Header onComponentChange={handleComponentChange} state={viewState} />
       {viewState == 'addRecord' && <AddRecord />}
       {viewState == 'myLibrary' && <MyLibrary />}
     </div>
