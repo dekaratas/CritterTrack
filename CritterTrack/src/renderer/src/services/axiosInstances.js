@@ -30,3 +30,8 @@ export const apiDeleteServerAxios = axios.create({
   baseURL: 'http://localhost:3001/sights',
   timeout: 5000
 })
+
+export const obisGetOccurrencesAxios = axios.create({
+  baseURL: 'https://api.obis.org/v3/occurrence',
+  timeout: 5000
+})

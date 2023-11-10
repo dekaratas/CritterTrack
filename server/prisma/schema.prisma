@@ -27,16 +27,3 @@ model PersonalSighting {
   createdAt DateTime @default(now())
 }
 
-model Species {
-  id Int @id @default(autoincrement())
-  sci_name String
-  vernacular String
-  redlistStatus Boolean @default(false)
-  category String?
-  sight_count Int
-  sst Float[]
-  sss Float[]
-  coordinates String[]
-  depth Int[]
-  count Int[]
-}
