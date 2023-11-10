@@ -61,6 +61,7 @@ model Occurrence {
   flags                         String[]
   category                      String?
 }
+  //! To be added
   // air_pressure                  String?
   // botTemp                       Float?
   // botSal                        Float?
