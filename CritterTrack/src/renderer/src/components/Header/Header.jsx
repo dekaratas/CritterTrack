@@ -11,10 +11,14 @@ export default function Header({ onComponentChange, state }) {
     textDecoration: state === component ? 'underline' : 'none'
   })
 
+  const handleImageClick = () => {
+    alert('Hi')
+  }
+
   return (
     <div className="headerContainer">
       <div className="logo-container">
-        <img src={nauti} alt="nauti" />
+        <img src={nauti} alt="nauti" onClick={handleImageClick} id="nauti" />
         <h1 className="logo">CritterTrack</h1>
       </div>
       <h1 className="separator">|</h1>
@@ -25,12 +29,12 @@ export default function Header({ onComponentChange, state }) {
       </button>
       <h1 className="separator">|</h1>
       <button onClick={() => handleButtonClick('critterSearch')}>
-        <h1 className="search">CritterSearch</h1>
+        <h1 className="search">Critter Search</h1>
       </button>
       <h1 className="separator">|</h1>
       <button onClick={() => handleButtonClick('addRecord')}>
         <h1 className="addrecord" style={underlineStyle('addRecord')}>
-          Add new Record
+          Add New Record
         </h1>
       </button>
       <h1 className="separator">|</h1>

@@ -48,13 +48,13 @@ export default function ImageUpload({ onImageUpload }) {
       <button onClick={onOpenFileClick}>
         <img src={imageUrl ? imageUrl : addImage} alt="imageAdd" />
       </button>
-      <img src={arrowUp} alt="arrowup" className="arrow" />
+      <img src={arrowUp} alt="arrowup" className="arrow" id="arrUp" />
       <h1 className="upload-instruct">
         1. Select your image!
         <br />
         2. Upload it to imgur!
       </h1>
-      <img src={arrowDown} alt="arrowdown" className="arrow" />
+      <img src={arrowDown} alt="arrowdown" className="arrow" id="arrDown" />
       <button onClick={handleUpload} className="upload-btn">
         Upload
       </button>
