@@ -4,16 +4,27 @@ import './MyLibrary.css'
 import 'leaflet/dist/leaflet.css'
 import { useState, useEffect } from 'react'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { motion } from 'framer-motion'
 import { format } from 'date-fns'
 
-// Latitude (North/South) first
-function Map() {
+// Map component receiving all records including the positional data
+//! Latitude (North/South) first
+// TODO: Fix issue of markers being displayed twice bc of the two tile layers presumably (GridLayer would be better?)
+// TODO: Here as well, fix issue of A/An (maybe util function?)
+// TODO: Automatically scroll to the record entry when map marker is selected
+function Map({ records }) {
   return (
     <MapContainer center={[-23.0322, 113.715]} zoom={3}>
       <TileLayer url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg" />
       <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png" />
+      {records.map((marker) => (
+        <Marker key={marker.id} position={[marker.latitude, marker.longitude]}>
+          <Popup>
+            A {marker.vernacular} sighting from {marker.date}
+          </Popup>
+        </Marker>
+      ))}
     </MapContainer>
   )
 }
@@ -21,6 +32,7 @@ function Map() {
 function Entry({ record, onDelete }) {
   const formattedDate = format(new Date(record.date), "do 'of' MMMM yyyy")
 
+  // Delete a personal record
   const handleDeletion = () => {
     onDelete(record.id)
   }
@@ -59,6 +71,7 @@ function Entry({ record, onDelete }) {
   )
 }
 
+//* DEFAULT EXPORT
 export default function MyLibrary() {
   const [records, setRecords] = useState([])
 
@@ -87,8 +100,7 @@ export default function MyLibrary() {
   //TODO: Polish the dragging idea/feature, bit crude rn
   return (
     <div className="myLibraryContainer">
-      <h1>My Records</h1>
-      <Map />
+      <Map records={records} />
       <motion.div className="entryContainer" drag="x">
         {records.map((record) => (
           <Entry key={record.id} record={record} onDelete={handleDeletion} />
