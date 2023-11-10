@@ -3,6 +3,8 @@ import { useMusic } from '../MusicContext/MusicContext'
 import { useEffect } from 'react'
 import oceanSound from '../../assets/ocean-waves-sounds.mp3'
 
+// TODO: Current Bug: Audio keeps restarting/layering when revisiting the Settings component...Implement better State Management
+
 export default function Settings() {
   const { isMusicPlaying, toggleMusic } = useMusic()
 
