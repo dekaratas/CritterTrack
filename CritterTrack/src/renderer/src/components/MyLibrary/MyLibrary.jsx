@@ -40,8 +40,9 @@ function Entry({ record, onDelete }) {
     onDelete(record.id)
   }
 
-  //TODO: For polish, in cardText, change A/An dynamically
-
+  // TODO: For polish, in cardText, change A/An dynamically
+  // TODO: Sort out the somewhat messed up CSS (due to ImageFilter)
+  // TODO: Sort out the wave svg because the element is bigger than the actual waves blocking interaction with content
   return (
     <div className="record">
       <div className="data">
