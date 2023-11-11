@@ -48,9 +48,7 @@ model Occurrence {
   sst                           Float?
   sss                           Float?
   habitat                       String?
-  eventDate                     DateTime?
   date_start                    DateTime?
-  eventID                       String?
   occurrenceID                  String?
   minimumDepthInMeters          Int?
   maximumDepthInMeters          Int?

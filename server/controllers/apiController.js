@@ -2,9 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const lookup = require("coordinate_to_country");
 const { countryCodes } = require("../Utils/CountryHashTable.js");
-
 const getOccurrences = require("../Utils/apiClientService.js");
-const { coordinateToCountry } = require("coordinate_to_country");
 
 async function apiConsoomer() {
   const delayInSeconds = 2;
@@ -14,11 +12,10 @@ async function apiConsoomer() {
     const startDate = currentDate.toISOString().split("T")[0];
     const endDate = currentDate.toISOString().split("T")[0];
 
-    // ?startdate=${startDate}&enddate=${endDate}&size=10
-    const query = `1088b587-07ac-4f8a-aa8c-39d9ac6d9a51`;
+    //! ?startdate=${startDate}&enddate=${endDate}&size=10
+    const query = `?startdate=${startDate}&enddate=${endDate}&size=50`;
     const data = await getOccurrences(query);
     for (const myEntry of data.results) {
-      const parsedEventDate = new Date(myEntry.eventDate);
       const parsedDateStart = new Date(parseInt(myEntry.date_start, 10));
       const parsedIndCount = +myEntry.individualCount;
       const parsedOrgQuant = +myEntry.organismQuantity;
@@ -31,7 +28,6 @@ async function apiConsoomer() {
           myEntry.decimalLatitude,
           myEntry.decimalLongitude
         );
-        console.log(evalCountry, newCountry);
         if (Array.isArray(evalCountry)) {
           newCountry = countryCodes.get(evalCountry[0]);
         } else {
@@ -58,9 +54,7 @@ async function apiConsoomer() {
           sst: myEntry.sst,
           sss: myEntry.sss,
           habitat: myEntry.habitat,
-          eventDate: parsedEventDate,
           date_start: parsedDateStart,
-          eventID: myEntry.eventID,
           occurrenceID: myEntry.occurrenceID,
           minimumDepthInMeters: myEntry.minimumDepthInMeters,
           maximumDepthInMeters: myEntry.maximumDepthInMeters,
