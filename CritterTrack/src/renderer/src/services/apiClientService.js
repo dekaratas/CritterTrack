@@ -1,9 +1,4 @@
-import {
-  apiServerAxios,
-  apiGetServerAxios,
-  apiDeleteServerAxios,
-  obisGetOccurrencesAxios
-} from './axiosInstances'
+import { apiServerAxios, apiGetServerAxios, apiDeleteServerAxios } from './axiosInstances'
 
 export default async function addNewRecord(data) {
   try {
@@ -29,15 +24,5 @@ export async function deleteRecordById(id) {
     return response.data
   } catch (error) {
     console.error('There has been an issue deleting the record: ', error)
-  }
-}
-
-// Get Data from OBIS API by modifying the query of the endpoint
-export async function getOccurrences(query) {
-  try {
-    const response = await obisGetOccurrencesAxios.get(`${query}`)
-    return response.data
-  } catch (error) {
-    console.error('There has been an issue with the API request: ', error)
   }
 }
