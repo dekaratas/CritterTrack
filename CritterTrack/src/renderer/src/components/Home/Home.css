@@ -1,7 +1,8 @@
 .homeContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   background-image: linear-gradient(to bottom right, #3500d3, #190061);
   width: 80vw;
   height: 70vh;

@@ -32,7 +32,7 @@ export default function Header({ onComponentChange, state }) {
         </h1>
       </button>
       <h1 className="separator">|</h1>
-      <button onClick={() => handleButtonClick('critterSearch')}>
+      <button>
         <h1 className="search">Critter Search</h1>
       </button>
       <h1 className="separator">|</h1>
