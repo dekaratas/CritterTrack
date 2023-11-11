@@ -15,6 +15,7 @@ import ImageFilter from 'react-image-filter'
 // TODO: Fix issue of markers being displayed twice bc of the two tile layers presumably (GridLayer would be better?)
 // TODO: Here as well, fix issue of A/An (maybe util function?)
 // TODO: Automatically scroll to the record entry when map marker is selected
+// TODO: Marker icon started to no longer be displayed properly
 function Map({ records }) {
   return (
     <MapContainer center={[-23.0322, 113.715]} zoom={3}>
