@@ -19,7 +19,8 @@ app.use(router);
 // Prisma handels the connection to postgres and I'm using one controller file per model so as to keep things somewhat modular and readable.
 // Naming convention, I didn't really consider so sight = user entries, occurrence = API entries because their first basic endpoing is /occurrence
 
-apiConsoomer();
+// Function to scrape API on a 2sec interval
+// apiConsoomer();
 
 app.listen(PORT, () => {
   console.log(`🐳 Server running on http://localhost:${PORT} 🐳`);

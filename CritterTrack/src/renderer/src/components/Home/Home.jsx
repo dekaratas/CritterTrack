@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-undef */
-// https://mof.obis.org/
+
 import './Home.css'
 
 export default function Home() {
