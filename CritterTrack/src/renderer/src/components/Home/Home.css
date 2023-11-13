@@ -25,3 +25,11 @@
   font-family: 'Reso-Bold';
   color: white;
 }
+
+.welcomeContainer {
+  margin-top: 5vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

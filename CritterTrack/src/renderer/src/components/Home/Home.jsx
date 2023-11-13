@@ -28,13 +28,18 @@ export default function Home() {
   return (
     <div className="homeContainer">
       <h1>Welcome Page(soon)</h1>
-      <h1>
-        Database currently featuring:
-        <br />
-        {occCount} external entries containing
-        <br />
-        {speccsCount} unique species.
-      </h1>
+      <div className="welcomeContainer">
+        <h1>
+          Database currently featuring:
+          <br />
+          {occCount} external entries containing
+          <br />
+          {speccsCount} unique species.
+        </h1>
+        <div className="critterOfTheDayContainer">
+          <h1>Critter of the Day</h1>
+        </div>
+      </div>
     </div>
   )
 }
