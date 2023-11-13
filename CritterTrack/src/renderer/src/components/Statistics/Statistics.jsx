@@ -4,10 +4,13 @@ import { VictoryPie } from 'victory'
 
 export default function Statistics() {
   const [countryData, setCountryData] = useState([])
+  const [loading, setLoading] = useState(true) // New state to track loading
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true) // Set loading to true before fetching data
+
         // Fetch country names
         const response = await fetch('http://localhost:3001/countries')
         const data = await response.json()
@@ -34,23 +37,33 @@ export default function Statistics() {
         const updatedData = [...top10Countries, { x: 'Other', y: otherCountriesCount }]
 
         setCountryData(updatedData)
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
+        setLoading(false)
       }
     }
 
     fetchData()
   }, [])
 
-  // Note: Avoid relying on console.log immediately after setCountryData due to asynchronous updates
   useEffect(() => {
     console.log(countryData)
-  }, [countryData]) // Log the updated countryData whenever it changes
+  }, [countryData])
 
   return (
     <div className="statContainer">
       <h1>Customizable Stats and Graphs go here</h1>
-      <VictoryPie data={countryData} />
+
+      {loading ? (
+        // Display a spinner or loading message while data is being fetched
+        <div className="spinner-container">
+          <p>Loading...</p>
+        </div>
+      ) : (
+        // Display the VictoryPie component when data is loaded
+        <VictoryPie data={countryData} />
+      )}
     </div>
   )
 }
