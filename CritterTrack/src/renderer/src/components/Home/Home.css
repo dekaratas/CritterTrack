@@ -37,3 +37,22 @@
 .critterOfTheDayContainer {
   width: 50%;
 }
+
+.cotd-img {
+  max-height: 300px;
+}
+
+.welcome-left {
+  display: flex;
+  flex-direction: column;
+}
+
+#welcome-header {
+  font-size: 30px;
+}
+
+figcaption {
+  font-style: italic;
+  color: gray;
+  font-size: 4px;
+}
