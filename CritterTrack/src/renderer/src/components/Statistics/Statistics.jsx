@@ -62,7 +62,22 @@ export default function Statistics() {
         </div>
       ) : (
         // Display the VictoryPie component when data is loaded
-        <VictoryPie data={countryData} />
+        <VictoryPie
+          colorScale={[
+            '#a9daff',
+            '#88ccff',
+            '#68beff',
+            '#3facff',
+            '#0694ff',
+            '#007ddc',
+            '#0066b3',
+            '#005392',
+            '#004172',
+            '#002e51',
+            '#001728'
+          ]}
+          data={countryData}
+        />
       )}
     </div>
   )
