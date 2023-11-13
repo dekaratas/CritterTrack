@@ -35,12 +35,12 @@ export default function Home() {
     fetchData()
   }, [])
 
+  //! Make async, will complain otherwise 
+  // function removeHtmlTags(htmlString) {
+  //   return htmlString.replace(/<\/?[^>]+(>|$)/g, "");
+  // }
 
-  function removeHtmlTags(htmlString) {
-    return htmlString.replace(/<\/?[^>]+(>|$)/g, "");
-  }
-
-  const cleanedWikiText = removeHtmlTags(wikiText)
+  // const cleanedWikiText = removeHtmlTags(wikiText)
 
   return (
     <div className="homeContainer">
@@ -55,7 +55,7 @@ export default function Home() {
         </h1>
         <div className="critterOfTheDayContainer">
           <h1>Critter of the Day</h1>
-          <p>{cleanedWikiText}</p>
+          <p>{wikiText}</p>
         </div>
       </div>
     </div>

@@ -19,7 +19,29 @@ async function getSpeciesCount(req, res) {
   console.log(`Number of unique species: ${uniqueSpeciesCount.length}`);
 }
 
+// Get Occ count based on country
+async function getCountryCount(req, res) {
+  try {
+    const { country } = req.params;
+    const scientificNamesInCountry = await prisma.occurrence.findMany({
+      where: {
+        country: country,
+      },
+      select: {
+        scientificName: true,
+      },
+    });
+    
+    console.log(scientificNamesInCountry.length);
+    res.status(200).send(`${scientificNamesInCountry.length}`)
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error retreiving data!')
+  }
+}
+
 module.exports = {
   getOccCount,
   getSpeciesCount,
+  getCountryCount
 };

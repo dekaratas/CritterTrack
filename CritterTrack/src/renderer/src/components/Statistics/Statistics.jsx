@@ -3,6 +3,8 @@ import { VictoryChart, VictoryHistogram } from 'victory'
 
 // Experimenting with Victory library
 
+
+
 export default function Statistics() {
   return (
     <div className="statContainer">
