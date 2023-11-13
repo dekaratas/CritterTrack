@@ -7,6 +7,7 @@ async function getOccCount(req, res) {
   res.status(200).send(`${occurrencesCount}`);
   console.log(`Number of occurrences: ${occurrencesCount}`);
 }
+
 async function getSpeciesCount(req, res) {
   const uniqueSpeciesCount = await prisma.occurrence.findMany({
     distinct: ["scientificName"],
