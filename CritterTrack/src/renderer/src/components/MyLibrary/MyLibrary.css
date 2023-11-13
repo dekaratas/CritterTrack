@@ -71,6 +71,10 @@
   align-items: flex-start;
 }
 
+.imgContainer:hover {
+  cursor: pointer;
+}
+
 .imgContainer img {
   max-width: 100%;
   min-height: 100%;
