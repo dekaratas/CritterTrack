@@ -1,20 +1,19 @@
 import './stats.css'
-import { VictoryChart, VictoryHistogram } from 'victory'
+import { VictoryChart, VictoryHistogram, VictoryPie } from 'victory'
 
 // Experimenting with Victory library
-
-
 
 export default function Statistics() {
   return (
     <div className="statContainer">
       <h1>Customizable Stats and Graphs go here</h1>
-      <VictoryChart domainPadding={10}>
-        <VictoryHistogram
-          style={{ data: { fill: '#c43a31' } }}
-          data={[{ x: 1 }, { x: 2 }, { x: 2 }, { x: 4 }, { x: 4 }, { x: 5 }]}
-        />
-      </VictoryChart>
+      <VictoryPie
+        data={[
+          { x: 'Cats', y: 35 },
+          { x: 'Dogs', y: 40 },
+          { x: 'Birds', y: 55 }
+        ]}
+      />
     </div>
   )
 }
