@@ -14,15 +14,22 @@ import fishMarker from '../../assets/icons8-fish-64.png'
 
 // Map component receiving all records including the positional data
 //! Latitude (North/South) first
-// TODO: Fix issue of markers being displayed twice bc of the two tile layers presumably (GridLayer would be better?)
-// TODO: Here as well, fix issue of A/An (maybe util function?)
 // TODO: Automatically scroll to the record entry when map marker is selected
-// TODO: Marker icon started to no longer be displayed properly
 function Map({ records }) {
   const customIcon = new Icon({
     iconUrl: fishMarker,
     iconSize: [38, 38]
   })
+
+  function getArticle(vernacularName) {
+    const vowels = ['a', 'e', 'i', 'o', 'u']
+
+    // Convert the vernacularName to lowercase for easier comparison
+    const firstLetter = vernacularName.toLowerCase()[0]
+    console.log(firstLetter)
+
+    return vowels.includes(firstLetter) ? 'An' : 'A'
+  }
 
   return (
     <MapContainer center={[-23.0322, 113.715]} zoom={3}>
@@ -31,7 +38,7 @@ function Map({ records }) {
       {records.map((marker) => (
         <Marker key={marker.id} position={[marker.latitude, marker.longitude]} icon={customIcon}>
           <Popup>
-            A {marker.vernacular} sighting from {marker.date}
+            {`${getArticle(marker.vernacular)} ${marker.vernacular} sighting from ${marker.date}`}
           </Popup>
         </Marker>
       ))}
@@ -48,7 +55,17 @@ function Entry({ record, onDelete }) {
     onDelete(record.id)
   }
 
-  // TODO: For polish, in cardText, change A/An dynamically
+  // Very Wet code but I'm rushing to the finish line here
+  function getArticle(vernacularName) {
+    const vowels = ['a', 'e', 'i', 'o', 'u']
+
+    // Convert the vernacularName to lowercase for easier comparison
+    const firstLetter = vernacularName.toLowerCase()[0]
+    console.log(firstLetter)
+
+    return vowels.includes(firstLetter) ? 'An' : 'A'
+  }
+
   // TODO: Sort out the somewhat messed up CSS (due to ImageFilter)
   // TODO: Sort out the wave svg because the element is bigger than the actual waves blocking interaction with content
   return (
@@ -61,21 +78,10 @@ function Entry({ record, onDelete }) {
         >
           <ImageFilter image={record.imgURL} alt="leImage" filter={imageFilter} />
         </div>
-        {/* Available data 
-        <p>Date: {record.date}</p>
-        <p>Vernacular: {record.vernacular}</p>
-        <p>Country: {record.country}</p>
-        <p>SST: {record.sst}</p>
-        <p>SSS: {record.sss}</p>
-        <p>Shoredistance: {record.shoredistance}</p>
-        <p>Depth: {record.depth}</p>
-        <p>Count: {record.count}</p>
-        <p>Longitude: {record.longitude}</p>
-        <p>Latitude: {record.latitude}</p>
-        <p>Creation: {record.createdAt}</p> */}
         <div className="cardShort">
           <p className="cardText">
-            A {record.vernacular} photographed <br /> in {record.country} on <br />
+            {`${getArticle(record.vernacular)} ${record.vernacular}`} photographed <br /> in{' '}
+            {record.country} on <br />
             the {formattedDate}.
           </p>
         </div>
