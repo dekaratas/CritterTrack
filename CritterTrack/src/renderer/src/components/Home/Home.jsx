@@ -14,19 +14,18 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const occCountResult = await getOccCount()
-        console.log(occCountResult)
         const speccsCountResult = await getSpeciesCount()
-        console.log(speccsCountResult)
-        const textResult = await getSpecWikiText("https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=Whale_shark")
-        let obj = textResult.data.query.pages;
-        console.log('myObjKeys', Object.keys(obj));
-        let objKey = Object.keys(obj);
-        console.log(objKey[0]);
-        console.log('MyData', textResult.data.query.pages[objKey].extract)
-        setWikiText(textResult.data.query.pages[objKey].extract);
-        console.log("WikiText", wikiText);
+        const textResult = await getSpecWikiText(
+          'https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=Whale_shark'
+        )
+
+        let obj = textResult.data.query.pages
+        let objKey = Object.keys(obj)
+        let cleanedWikiText = removeHtmlTags(obj[objKey].extract)
+
         setOccCount(occCountResult.data)
         setSpeccsCount(speccsCountResult.data)
+        setWikiText(cleanedWikiText)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -35,12 +34,13 @@ export default function Home() {
     fetchData()
   }, [])
 
-  //! Make async, will complain otherwise 
-  // function removeHtmlTags(htmlString) {
-  //   return htmlString.replace(/<\/?[^>]+(>|$)/g, "");
-  // }
+  //! Make async, will complain otherwise
+  function removeHtmlTags(htmlString) {
+    return htmlString.replace(/<\/?[^>]+(>|$)/g, '')
+  }
 
   // const cleanedWikiText = removeHtmlTags(wikiText)
+  // setWikiText(cleanedWikiText)
 
   return (
     <div className="homeContainer">
