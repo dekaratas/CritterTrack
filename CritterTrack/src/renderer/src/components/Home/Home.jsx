@@ -22,7 +22,7 @@ export default function Home() {
           'https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=Whale_shark'
         )
 
-        const imageData = await getImage(`{whale}`)
+        const imageData = await getImage(`{whale%20shark}`)
         console.log('Le Image', imageData.data[0].images[0].link)
         const imageSrc = await imageData.data[0].images[0].link
         setImage(imageSrc)

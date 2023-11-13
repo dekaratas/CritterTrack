@@ -6,9 +6,11 @@ import { useState, useEffect } from 'react'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
 import sortRecordsByDate from '../../Utils/recordDateSorter'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Icon } from 'leaflet'
 import { motion } from 'framer-motion'
 import { format } from 'date-fns'
 import ImageFilter from 'react-image-filter'
+import fishMarker from '../../assets/icons8-fish-64.png'
 
 // Map component receiving all records including the positional data
 //! Latitude (North/South) first
@@ -17,12 +19,17 @@ import ImageFilter from 'react-image-filter'
 // TODO: Automatically scroll to the record entry when map marker is selected
 // TODO: Marker icon started to no longer be displayed properly
 function Map({ records }) {
+  const customIcon = new Icon({
+    iconUrl: fishMarker,
+    iconSize: [38, 38]
+  })
+
   return (
     <MapContainer center={[-23.0322, 113.715]} zoom={3}>
       <TileLayer url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg" />
       <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png" />
       {records.map((marker) => (
-        <Marker key={marker.id} position={[marker.latitude, marker.longitude]}>
+        <Marker key={marker.id} position={[marker.latitude, marker.longitude]} icon={customIcon}>
           <Popup>
             A {marker.vernacular} sighting from {marker.date}
           </Popup>
