@@ -4,32 +4,38 @@ import { VictoryPie } from 'victory'
 
 export default function Statistics() {
   const [countryData, setCountryData] = useState([])
-  const [loading, setLoading] = useState(true) // New state to track loading
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true) // Set loading to true before fetching data
+        setLoading(true)
 
         // Fetch country names
         const response = await fetch('http://localhost:3001/countries')
         const data = await response.json()
 
+        // Combine "United States" and "United States of America (the)"
+        const combinedData = combineUnitedStates(data)
+
         // For each country, fetch the species count and update the state
         const dataWithSpeciesCount = await Promise.all(
-          data.map(async (country) => {
+          combinedData.map(async (country) => {
             const speciesResponse = await fetch(`http://localhost:3001/countCount/${country}`)
             const speciesCount = await speciesResponse.json()
             return { x: country, y: speciesCount }
           })
         )
 
+        // Filter out duplicates after combining
+        const uniqueData = filterDuplicates(dataWithSpeciesCount)
+
         // Sort the data by species count in descending order
-        dataWithSpeciesCount.sort((a, b) => b.y - a.y)
+        uniqueData.sort((a, b) => b.y - a.y)
 
         // Take the top 10 countries and group the rest as "Other"
-        const top10Countries = dataWithSpeciesCount.slice(0, 10)
-        const otherCountriesCount = dataWithSpeciesCount
+        const top10Countries = uniqueData.slice(0, 10)
+        const otherCountriesCount = uniqueData
           .slice(10)
           .reduce((sum, country) => sum + country.y, 0)
 
@@ -56,12 +62,10 @@ export default function Statistics() {
       <h1>Customizable Stats and Graphs go here</h1>
 
       {loading ? (
-        // Display a spinner or loading message while data is being fetched
         <div className="spinner-container">
           <p>Loading...</p>
         </div>
       ) : (
-        // Display the VictoryPie component when data is loaded
         <VictoryPie
           colorScale={[
             '#a9daff',
@@ -76,9 +80,43 @@ export default function Statistics() {
             '#002e51',
             '#001728'
           ]}
+          height={300}
           data={countryData}
+          style={{
+            labels: {
+              fontSize: 5,
+              fill: 'white',
+              fontWeight: 'bold',
+              lineHeight: 1.5,
+              wordWrap: 'break-word'
+            }
+          }}
         />
       )}
     </div>
   )
+}
+
+// Function to combine "United States" and "United States of America (the)"
+const combineUnitedStates = (data) => {
+  const unitedStatesIndex = data.findIndex((country) =>
+    ['United States', 'United States of America (the)'].includes(country)
+  )
+
+  if (unitedStatesIndex !== -1) {
+    const combinedData = [...data]
+    combinedData[unitedStatesIndex] = 'United States' // Combine entries
+    return combinedData
+  }
+
+  return data
+}
+
+// Function to filter out duplicate entries
+const filterDuplicates = (data) => {
+  const uniqueMap = new Map()
+  data.forEach((entry) => {
+    uniqueMap.set(entry.x, entry)
+  })
+  return Array.from(uniqueMap.values())
 }
