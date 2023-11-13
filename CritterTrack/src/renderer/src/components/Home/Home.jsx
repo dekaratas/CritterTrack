@@ -11,6 +11,7 @@ export default function Home() {
   const [speccsCount, setSpeccsCount] = useState(null)
   const [wikiText, setWikiText] = useState(null)
   const [image, setImage] = useState(null)
+  const [title, setTitle] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +30,11 @@ export default function Home() {
         let obj = textResult.data.query.pages
         let objKey = Object.keys(obj)
         let cleanedWikiText = removeHtmlTags(obj[objKey].extract)
+
+        // Get Wiki Title normalized
+        console.log('trying to get name: ', textResult.data.query.normalized[0].to)
+        let wikiTitle = textResult.data.query.normalized[0].to
+        setTitle(wikiTitle)
 
         setOccCount(occCountResult.data)
         setSpeccsCount(speccsCountResult.data)
@@ -50,7 +56,7 @@ export default function Home() {
       <h1 id="welcome-header">Welcome Back!</h1>
       <div className="welcomeContainer">
         <div className="critterOfTheDayContainer">
-          <h1>Critter of the Day</h1>
+          <h1>Critter of the Day - {title}</h1>
           <p>{wikiText}</p>
         </div>
         <div className="welcome-left">
