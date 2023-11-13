@@ -1,4 +1,11 @@
-import { apiServerAxios, apiGetServerAxios, apiDeleteServerAxios } from './axiosInstances'
+/* eslint-disable no-undef */
+import {
+  apiServerAxios,
+  apiGetServerAxios,
+  apiDeleteServerAxios,
+  apiGetSpeccsCount,
+  apiGetOccCount
+} from './axiosInstances'
 
 export default async function addNewRecord(data) {
   try {
@@ -24,5 +31,25 @@ export async function deleteRecordById(id) {
     return response.data
   } catch (error) {
     console.error('There has been an issue deleting the record: ', error)
+  }
+}
+
+// Update getSpeciesCount function
+export async function getSpeciesCount() {
+  try {
+    const response = await apiGetSpeccsCount.get()
+    return response
+  } catch (error) {
+    console.log('Error retrieving Species count: ', error)
+  }
+}
+
+// Update getOccCount function
+export async function getOccCount() {
+  try {
+    const response = await apiGetOccCount.get()
+    return response
+  } catch (error) {
+    console.log('Error retrieving Entries: ', error)
   }
 }

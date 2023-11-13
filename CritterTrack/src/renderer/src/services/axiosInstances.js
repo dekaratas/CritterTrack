@@ -31,3 +31,13 @@ export const apiDeleteServerAxios = axios.create({
   baseURL: 'http://localhost:3001/sights',
   timeout: 5000
 })
+
+export const apiGetOccCount = axios.create({
+  baseURL: 'http://localhost:3001/occs',
+  timeout: 5000
+})
+
+export const apiGetSpeccsCount = axios.create({
+  baseURL: 'http://localhost:3001/speccs',
+  timeout: 5000
+})

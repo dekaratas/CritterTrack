@@ -1,143 +1,24 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const lookup = require("coordinate_to_country");
-const { countryCodes } = require("../Utils/CountryHashTable.js");
 
-async function createOccurrence(entry, req, res) {
-  const {
-    id,
-    basisOfRecord,
-    datasetName,
-    dataset_id,
-    scientificName,
-    originalScientificName,
-    vernacularName,
-    decimalLatitude,
-    decimalLongitude,
-    coordinateUncertaintyInMeters,
-    country,
-    sex,
-    locality,
-    waterBody,
-    sst,
-    sss,
-    habitat,
-    eventDate,
-    date_start,
-    eventID,
-    occurrenceID,
-    minimumDepthInMeters,
-    maximumDepthInMeters,
-    depth,
-    organismQuantity,
-    individualCount,
-    recordedBy,
-    shoredistance,
-    marine,
-    brackish,
-    flags,
-    category,
-  } = entry;
-
-  //! To be added sometime this weekend so we can have some actual data to work with on the Front
-  // air_pressure
-  // botTemp
-  // botSal
-  // forkLength
-  // weight and more
-
-  try {
-    // Essentially the makeshit place where I push and shove the data we have into a format that Prisma
-    // is happy with, should all be self explanatory
-    const parsedEventDate = new Date(eventDate);
-    const parsedDateStart = new Date(parseInt(date_start, 10));
-    const parsedIndCount = +individualCount;
-    const parsedOrgQuant = +organismQuantity;
-
-    // Intercept times when country is not given because we will ALWAYS have lat and long
-    let newCountry = country;
-
-    if (country == null) {
-      const evalCountry = lookup(decimalLatitude, decimalLongitude);
-      if (Array.isArray(evalCountry)) {
-        newCountry = countryCodes.get(evalCountry[0]);
-      } else {
-        newCountry = countryCodes.get(evalCountry + "");
-      }
-    }
-    const newOccurrence = await prisma.occurrence.create({
-      data: {
-        id,
-        basisOfRecord,
-        datasetName,
-        dataset_id,
-        scientificName,
-        originalScientificName,
-        vernacularName,
-        decimalLatitude,
-        decimalLongitude,
-        coordinateUncertaintyInMeters,
-        country: newCountry,
-        sex,
-        locality,
-        waterBody,
-        sst,
-        sss,
-        habitat,
-        eventDate: parsedEventDate,
-        date_start: parsedDateStart,
-        eventID,
-        occurrenceID,
-        minimumDepthInMeters,
-        maximumDepthInMeters,
-        depth,
-        organismQuantity: parsedOrgQuant,
-        individualCount: parsedIndCount,
-        recordedBy,
-        shoredistance,
-        marine,
-        brackish,
-        flags,
-        category,
-      },
-    });
-  } catch (error) {
-    console.error("Something went wrong!", error);
-  }
+async function getOccCount(req, res) {
+  const occurrencesCount = await prisma.occurrence.count();
+  res.status(200).send(`${occurrencesCount}`);
+  console.log(`Number of occurrences: ${occurrencesCount}`);
 }
-
-// Only 'create' function to be exported in this file since its sole purpose is to create as much data as possible
-// TODO: Fix node complaining about res.send not being a function in my try/catch statement, replaced those for now
-async function createOccurrences(apiData, req, res) {
-  try {
-    for (const entry of apiData.body) {
-      await createOccurrence(entry, req, res);
-    }
-    console.log("Great Success!");
-    await prisma.$disconnect();
-  } catch (error) {
-    console.log("Great Failure!");
-  }
-}
-
-// TODO: Figure out if it's best to use the unique IDs or just go with an incrementing index one as PK
-// Deleting via id as endpoint doesn't work when the id is like 00000753-6618-43c7-8875-89a150c39097
-async function deleteOccurrence(req, res) {
-  try {
-    const { id } = req.params;
-    console.log("ID:", id);
-    const entry = await prisma.occurrence.delete({
-      where: { id: parseInt(id) },
-    });
-    console.log("The following entry was successfully deleted: ", entry);
-    res.status(201).send(entry);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Failed to remove the entry!");
-  }
+async function getSpeciesCount(req, res) {
+  const uniqueSpeciesCount = await prisma.occurrence.findMany({
+    distinct: ["scientificName"],
+    select: {
+      scientificName: true,
+    },
+  });
+  res.status(200).send(`${uniqueSpeciesCount.length}`);
+  console.log(`Number of unique species: ${uniqueSpeciesCount.length}`);
 }
 
 module.exports = {
-  createOccurrences,
-  deleteOccurrence,
+  getOccCount,
+  getSpeciesCount,
 };

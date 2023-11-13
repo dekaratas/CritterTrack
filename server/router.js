@@ -5,15 +5,14 @@ const {
   deleteRecord,
 } = require("./controllers/sightcontroller.js");
 const {
-  createOccurrences,
-  deleteOccurrence,
+  getOccCount,
+  getSpeciesCount,
 } = require("./controllers/occurrencecontroller.js");
 
 router.get("/sights", getAllRecords);
 router.post("/addsight", addNewRecord);
 router.delete("/sights/:id", deleteRecord);
-router.post("/addapisights", createOccurrences);
-//! Yeah, this one doesn't work
-router.delete("/apisights/:id", deleteOccurrence);
+router.get("/occs", getOccCount);
+router.get("/speccs", getSpeciesCount);
 
 module.exports = router;
