@@ -32,7 +32,7 @@ async function getCountryNames(req, res) {
     const countryNames = uniqueCountries.map((entry) => entry.country);
 
     res.status(200).send(JSON.stringify(countryNames));
-    console.log(`Unique countries: ${JSON.stringify(countryNames)}`);
+    // console.log(`Unique countries: ${JSON.stringify(countryNames)}`);
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving data!");
@@ -52,7 +52,7 @@ async function getCountryCount(req, res) {
       },
     });
 
-    console.log(scientificNamesInCountry.length);
+    // console.log(scientificNamesInCountry.length);
     res.status(200).send(`${scientificNamesInCountry.length}`);
   } catch (error) {
     console.log(error);
