@@ -15,7 +15,7 @@ import fishMarker from '../../assets/icons8-fish-64.png'
 // Map component receiving all records including the positional data
 //! Latitude (North/South) first
 // TODO: Automatically scroll to the record entry when map marker is selected
-function Map({ records }) {
+function Map({ records, mapCenter }) {
   const customIcon = new Icon({
     iconUrl: fishMarker,
     iconSize: [38, 38]
@@ -32,7 +32,7 @@ function Map({ records }) {
   }
 
   return (
-    <MapContainer center={[-23.0322, 113.715]} zoom={3}>
+    <MapContainer center={mapCenter} zoom={3}>
       <TileLayer url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg" />
       <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png" />
       {records.map((marker) => (
@@ -96,6 +96,7 @@ function Entry({ record, onDelete }) {
 //* DEFAULT EXPORT
 export default function MyLibrary() {
   const [records, setRecords] = useState([])
+  const [mapCenter, setMapCenter] = useState([-23.0322, 113.715])
 
   useEffect(() => {
     async function fetchRecords() {
@@ -110,6 +111,7 @@ export default function MyLibrary() {
     fetchRecords()
   }, [])
 
+  //! Handle Record Deletion
   const handleDeletion = async (id) => async (e) => {
     try {
       e.preventDefault()
@@ -121,10 +123,10 @@ export default function MyLibrary() {
       console.error('Error deleting record:', error)
     }
   }
-  //TODO: Polish the dragging idea/feature, bit crude rn
+
   return (
     <div className="myLibraryContainer">
-      <Map records={records} />
+      <Map records={records} mapCenter={mapCenter} />
       <motion.div className="entryContainer" drag="x">
         {records.map((record) => (
           <Entry key={record.id} record={record} onDelete={handleDeletion} />
