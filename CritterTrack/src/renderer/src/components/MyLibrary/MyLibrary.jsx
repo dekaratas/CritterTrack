@@ -14,7 +14,6 @@ import fishMarker from '../../assets/icons8-fish-64.png'
 
 // Map component receiving all records including the positional data
 //! Latitude (North/South) first
-// TODO: Automatically scroll to the record entry when map marker is selected
 function Map({ records, mapCenter }) {
   const customIcon = new Icon({
     iconUrl: fishMarker,
@@ -24,12 +23,11 @@ function Map({ records, mapCenter }) {
   function getArticle(vernacularName) {
     const vowels = ['a', 'e', 'i', 'o', 'u']
 
-    // Convert the vernacularName to lowercase for easier comparison
     const firstLetter = vernacularName.toLowerCase()[0]
-    console.log(firstLetter)
-
     return vowels.includes(firstLetter) ? 'An' : 'A'
   }
+
+  console.log('current map center', mapCenter)
 
   return (
     <MapContainer center={mapCenter} zoom={3}>
@@ -38,7 +36,9 @@ function Map({ records, mapCenter }) {
       {records.map((marker) => (
         <Marker key={marker.id} position={[marker.latitude, marker.longitude]} icon={customIcon}>
           <Popup>
-            {`${getArticle(marker.vernacular)} ${marker.vernacular} sighting from ${marker.date}`}
+            {`${getArticle(marker.vernacular)} ${marker.vernacular} sighting from ${
+              marker.date
+            }. Position: ${marker.latitude},${marker.longitude}`}
           </Popup>
         </Marker>
       ))}
@@ -46,7 +46,8 @@ function Map({ records, mapCenter }) {
   )
 }
 
-function Entry({ record, onDelete }) {
+//! Entry component
+function Entry({ record, onDelete, setMapCenter }) {
   const [imageFilter, setImageFilter] = useState('grayscale')
   const formattedDate = format(new Date(record.date), "do 'of' MMMM yyyy")
 
@@ -61,13 +62,16 @@ function Entry({ record, onDelete }) {
 
     // Convert the vernacularName to lowercase for easier comparison
     const firstLetter = vernacularName.toLowerCase()[0]
-    console.log(firstLetter)
-
     return vowels.includes(firstLetter) ? 'An' : 'A'
   }
 
-  // TODO: Sort out the somewhat messed up CSS (due to ImageFilter)
-  // TODO: Sort out the wave svg because the element is bigger than the actual waves blocking interaction with content
+  function handleMClick() {
+    console.log(record.vernacular)
+    console.log(record.latitude)
+    console.log(record.longitude)
+    setMapCenter([record.latitude, record.longitude])
+  }
+
   return (
     <div className="record">
       <div className="data">
@@ -89,11 +93,14 @@ function Entry({ record, onDelete }) {
       <button onClick={handleDeletion} className="rmvRecordBtn" title="Delete record permanently?">
         X
       </button>
+      <button className="moveBtn" onClick={handleMClick}>
+        M
+      </button>
     </div>
   )
 }
 
-//* DEFAULT EXPORT
+//! DEFAULT EXPORT COMPONENT
 export default function MyLibrary() {
   const [records, setRecords] = useState([])
   const [mapCenter, setMapCenter] = useState([-23.0322, 113.715])
@@ -111,7 +118,7 @@ export default function MyLibrary() {
     fetchRecords()
   }, [])
 
-  //! Handle Record Deletion
+  // Handle Record Deletion
   const handleDeletion = async (id) => async (e) => {
     try {
       e.preventDefault()
@@ -129,7 +136,12 @@ export default function MyLibrary() {
       <Map records={records} mapCenter={mapCenter} />
       <motion.div className="entryContainer" drag="x">
         {records.map((record) => (
-          <Entry key={record.id} record={record} onDelete={handleDeletion} />
+          <Entry
+            key={record.id}
+            record={record}
+            onDelete={handleDeletion}
+            setMapCenter={setMapCenter}
+          />
         ))}
       </motion.div>
     </div>
