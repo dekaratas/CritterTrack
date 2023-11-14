@@ -44,9 +44,11 @@ export default function CritterSearch() {
     console.log(suggestion)
     //! Adjust wiki search query
     const formattedWikiSuggestion = convertToValidWikiQuery(suggestion)
-    console.log(formattedWikiSuggestion)
-    setWikiText(formattedWikiSuggestion)
     getWikiText(formattedWikiSuggestion)
+
+    //! Adjust imgur search query
+    const formattedImgurSuggestion = convertToValidImgurQuery(suggestion)
+    getImgurImage(formattedImgurSuggestion)
   }
 
   //! Help formatting to adjust to wikipedia page
@@ -54,6 +56,12 @@ export default function CritterSearch() {
     return suggestion.replace(/ /g, '_')
   }
 
+  //! Help formatting to adjust to imgur search
+  const convertToValidImgurQuery = (suggestion) => {
+    return encodeURIComponent(suggestion)
+  }
+
+  //! Async function to get cleaned WikiText
   async function getWikiText(wikiQuery) {
     try {
       const textResult = await getSpecWikiText(
@@ -69,6 +77,19 @@ export default function CritterSearch() {
     }
   }
 
+  //! Async function to get first Imgur image
+  async function getImgurImage(imgurQuery) {
+    try {
+      const imageData = await getImage(`{${imgurQuery}}`)
+      console.log('Le Image', imageData.data[0].images[0].link)
+      const cleanedImageLink = imageData.data[0].images[0].link
+      setImage(cleanedImageLink)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  //! WikiText cleaner
   function removeHtmlTags(htmlString) {
     return htmlString.replace(/<\/?[^>]+(>|$)/g, '')
   }
