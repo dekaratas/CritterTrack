@@ -2,20 +2,32 @@
 /* eslint-disable react/prop-types */
 import './MyLibrary.css'
 import 'leaflet/dist/leaflet.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { getMyRecords, deleteRecordById } from '../../services/apiClientService'
 import sortRecordsByDate from '../../Utils/recordDateSorter'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMapEvent } from 'react-leaflet'
 import { Icon } from 'leaflet'
 import { motion } from 'framer-motion'
 import { format } from 'date-fns'
 import ImageFilter from 'react-image-filter'
 import fishMarker from '../../assets/icons8-fish-64.png'
 
+function SetViewOnClick({ animateRef }) {
+  const map = useMapEvent('click', (e) => {
+    map.setView(e.latlng, map.getZoom(), {
+      animate: animateRef.current || false
+    })
+  })
+
+  return null
+}
+
 // Map component receiving all records including the positional data
 //! Latitude (North/South) first
 // TODO: Automatically scroll to the record entry when map marker is selected
 function Map({ records }) {
+  const animateRef = useRef(true)
+
   const customIcon = new Icon({
     iconUrl: fishMarker,
     iconSize: [38, 38]
@@ -32,7 +44,7 @@ function Map({ records }) {
   }
 
   return (
-    <MapContainer center={[-23.0322, 113.715]} zoom={3}>
+    <MapContainer center={[-23.0322, 113.715]} zoom={3} scrollWheelZoom={false}>
       <TileLayer url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg" />
       <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png" />
       {records.map((marker) => (
@@ -42,6 +54,7 @@ function Map({ records }) {
           </Popup>
         </Marker>
       ))}
+      <SetViewOnClick animateRef={animateRef} />
     </MapContainer>
   )
 }
