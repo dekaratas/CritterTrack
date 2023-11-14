@@ -1,11 +1,13 @@
 .searchContainer {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-around;
   background-image: linear-gradient(to bottom right, #3500d3, #190061);
   width: 80vw;
   height: 70vh;
   border-radius: 10px;
+  color: white;
   padding: 5px;
   margin-top: 20px;
   margin-left: auto;
@@ -33,5 +35,18 @@ input {
 }
 
 .critterInfo img {
-  max-width: 500px;
+  max-width: 350px;
+}
+
+.searchHeader {
+  font-family: 'Reso-Bold';
+  color: white;
+}
+
+.searchInfo input {
+  margin-bottom: 20px;
+}
+
+.searchTitle {
+  text-decoration: underline;
 }

@@ -7,7 +7,6 @@ import fishMarker from '../../assets/icons8-fish-64.png'
 export default function CritterSearch() {
   const [searchTerm, setSearchTerm] = useState('')
   const [suggestions, setSuggestions] = useState([])
-  const [pageContent, setPageContent] = useState(null)
   const [wikiText, setWikiText] = useState(null)
   const [image, setImage] = useState(null)
   const [title, setTitle] = useState(null)
@@ -40,8 +39,8 @@ export default function CritterSearch() {
   const handleSuggestionClick = (suggestion) => {
     setSearchTerm('')
     setSuggestions([])
-    setPageContent(suggestion)
     console.log(suggestion)
+    setTitle(suggestion)
     //! Adjust wiki search query
     const formattedWikiSuggestion = convertToValidWikiQuery(suggestion)
     getWikiText(formattedWikiSuggestion)
@@ -82,6 +81,8 @@ export default function CritterSearch() {
     try {
       const imageData = await getImage(`{${imgurQuery}}`)
       console.log('Le Image', imageData.data[0].images[0].link)
+      console.log('Le Image', imageData.data[0])
+      console.log('Le Image Author', imageData.data[0].account_url)
       const cleanedImageLink = imageData.data[0].images[0].link
       setImage(cleanedImageLink)
     } catch (err) {
@@ -97,7 +98,7 @@ export default function CritterSearch() {
   return (
     <div className="searchContainer">
       <div className="searchInfo">
-        <h1>Search for specific Species</h1>
+        <h1 className="searchHeader">Search for specific Species</h1>
         <input type="text" value={searchTerm} onChange={handleInputChange} />
         {suggestions.length > 0 && (
           <ul className="suggestionList">
@@ -108,6 +109,7 @@ export default function CritterSearch() {
             ))}
           </ul>
         )}
+        <h1 className="searchTitle">{title ? title : ''}</h1>
         {wikiText ? wikiText : 'Waiting for your selection!'}
       </div>
       <div className="critterInfo">
