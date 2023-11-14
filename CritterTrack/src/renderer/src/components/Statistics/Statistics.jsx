@@ -68,6 +68,29 @@ export default function Statistics() {
         </div>
       ) : (
         <VictoryPie
+          events={[
+            {
+              target: 'data',
+              eventHandlers: {
+                onClick: () => {
+                  return [
+                    {
+                      target: 'data',
+                      mutation: ({ style }) => {
+                        return style.fill === '#c43a31' ? null : { style: { fill: '#c43a31' } }
+                      }
+                    },
+                    {
+                      target: 'labels',
+                      mutation: ({ style }) => {
+                        return style.fill === '#c43a31' ? null : { style: { fill: '#c43a31' } }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]}
           colorScale={[
             '#a9daff',
             '#88ccff',
