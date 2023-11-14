@@ -42,12 +42,29 @@ async function getCountryNames(req, res) {
 //! Get unique Species names
 async function getSpecies(req, res) {
   try {
-    const uniqueSpecies = await prisma.occurrence.findMany({
+    const { search } = req.query;
+
+    let speciesQuery = {
       distinct: ["vernacularName"],
       select: {
         vernacularName: true,
       },
-    });
+    };
+
+    // If a search term is provided, filter by it
+    if (search) {
+      speciesQuery = {
+        ...speciesQuery,
+        where: {
+          vernacularName: {
+            contains: search, // Adjust this based on your filtering needs
+            mode: "insensitive", // Case-insensitive search
+          },
+        },
+      };
+    }
+
+    const uniqueSpecies = await prisma.occurrence.findMany(speciesQuery);
 
     const speciesNames = uniqueSpecies.map((entry) => entry.vernacularName);
 
