@@ -9,6 +9,7 @@ const {
   getSpeciesCount,
   getCountryCount,
   getCountryNames,
+  getSpecies,
 } = require("./controllers/occurrencecontroller.js");
 
 router.get("/sights", getAllRecords);
@@ -18,5 +19,6 @@ router.get("/occs", getOccCount);
 router.get("/speccs", getSpeciesCount);
 router.get("/countCount/:country", getCountryCount);
 router.get("/countries", getCountryNames);
+router.get("/species", getSpecies);
 
 module.exports = router;
