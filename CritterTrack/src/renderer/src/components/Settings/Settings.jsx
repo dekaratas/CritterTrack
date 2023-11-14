@@ -29,16 +29,27 @@ export default function Settings() {
 
   return (
     <div className="settingContainer">
-      <h1>Configure your app</h1>
+      <h1 className="settingHeader">Configure your app</h1>
       <form>
-        <label htmlFor="bgSound">Enable soothing ocean sounds?</label>
-        <input
-          type="checkbox"
-          id="bgSound"
-          name="bgSound"
-          checked={isMusicPlaying}
-          onChange={handleCheckboxChange}
-        />
+        <div className="settingField">
+          <label htmlFor="bgSound">Enable soothing ocean sounds?</label>
+          <input
+            type="checkbox"
+            id="bgSound"
+            name="bgSound"
+            checked={isMusicPlaying}
+            onChange={handleCheckboxChange}
+          />
+        </div>
+        <div className="settingField nameInput">
+          <label htmlFor="username">Enter your Name:</label>
+          <input type="text" id="username" name="username" placeholder="Your Name..." />
+        </div>
+        <div className="settingField">
+          <button id="deleteRecords" name="deleteRecords">
+            Delete all personal records?
+          </button>
+        </div>
       </form>
     </div>
   )

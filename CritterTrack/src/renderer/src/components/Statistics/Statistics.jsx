@@ -59,7 +59,8 @@ export default function Statistics() {
 
   return (
     <div className="statContainer">
-      <h1>Customizable Stats and Graphs go here</h1>
+      <h1>Stats and Graphs</h1>
+      <p>Species distribution by Country</p>
 
       {loading ? (
         <div className="spinner-container">

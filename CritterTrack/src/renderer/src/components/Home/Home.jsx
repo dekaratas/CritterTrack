@@ -53,7 +53,7 @@ export default function Home() {
 
   return (
     <div className="homeContainer">
-      <h1 id="welcome-header">Welcome Back!</h1>
+      <h1 id="welcome-header">Good evening, Dennis!</h1>
       <div className="welcomeContainer">
         <div className="critterOfTheDayContainer">
           <h1>Critter of the Day - {title}</h1>
