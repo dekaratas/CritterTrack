@@ -5,6 +5,7 @@ import { VictoryPie } from 'victory'
 export default function Statistics() {
   const [countryData, setCountryData] = useState([])
   const [loading, setLoading] = useState(true)
+  const [selectedOption, setSelectedOption] = useState('button1')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,11 +58,54 @@ export default function Statistics() {
     console.log(countryData)
   }, [countryData])
 
+  const handleOptionChange = (option) => {
+    setSelectedOption(option)
+    // You can add logic to update data based on the selected option here
+  }
+
   return (
     <div className="statContainer">
       <h1>Stats and Graphs</h1>
-      <p>Species distribution by Country</p>
-
+      <div className="buttons">
+        <p>
+          <input
+            type="radio"
+            id="button1"
+            name="options"
+            value="button1"
+            checked={selectedOption === 'button1'}
+            onChange={() => handleOptionChange('button1')}
+          />
+          <label htmlFor="button1">Species distribution by Country</label>
+          <input
+            type="radio"
+            id="button2"
+            name="options"
+            value="button2"
+            checked={selectedOption === 'button2'}
+            onChange={() => handleOptionChange('button2')}
+          />
+          <label htmlFor="button2">Button 2</label>
+          <input
+            type="radio"
+            id="button3"
+            name="options"
+            value="button3"
+            checked={selectedOption === 'button3'}
+            onChange={() => handleOptionChange('button3')}
+          />
+          <label htmlFor="button3">Button 3</label>
+          <input
+            type="radio"
+            id="button4"
+            name="options"
+            value="button4"
+            checked={selectedOption === 'button4'}
+            onChange={() => handleOptionChange('button4')}
+          />
+          <label htmlFor="button4">Button 4</label>
+        </p>
+      </div>
       {loading ? (
         <div className="spinner-container">
           <p>Loading...</p>
