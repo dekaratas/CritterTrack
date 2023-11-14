@@ -30,7 +30,7 @@ function Map({ records }) {
 
   const customIcon = new Icon({
     iconUrl: fishMarker,
-    iconSize: [38, 38]
+    iconSize: [34, 34]
   })
 
   function getArticle(vernacularName) {
