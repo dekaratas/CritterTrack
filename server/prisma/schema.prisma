@@ -62,9 +62,4 @@ model Occurrence {
   flags                         String[]
   category                      String?
 }
-  //! To be added sometime this weekend so we can have some actual data to work with on the front
-  // air_pressure                  String?
-  // botTemp                       Float?
-  // botSal                        Float?
-  // forkLength                    Int?
-  // weight and more               Int?
+

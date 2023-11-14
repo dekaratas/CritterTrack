@@ -2,7 +2,6 @@
 /* eslint-disable react/jsx-no-undef */
 import { useState, useEffect } from 'react'
 import './Home.css'
-import { getOccCount, getSpeciesCount } from '../../services/apiClientService'
 import { getSpecWikiText } from '../../services/wikiApiService'
 import { getImage } from '../../services/imageUploadService'
 
@@ -10,7 +9,6 @@ export default function Home() {
   const [wikiText, setWikiText] = useState(null)
   const [image, setImage] = useState(null)
   const [title, setTitle] = useState(null)
-  const [imgSrc, setImgSrc] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {

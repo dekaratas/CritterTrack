@@ -18,6 +18,24 @@
   font-size: 20px;
 }
 
+.settingContainer h1 {
+  font-family: 'Reso-Bold';
+  color: white;
+}
+
+.settingField button {
+  color: white;
+  font-family: 'Reso-Bold';
+  width: 250px;
+  margin-top: 10px;
+  height: 20px;
+  background-color: #190061;
+  border-radius: 10px;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
 input {
   margin-left: 10px;
 }

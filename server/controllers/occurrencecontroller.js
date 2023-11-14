@@ -1,6 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const lookup = require("coordinate_to_country");
 
 async function getOccCount(req, res) {
   const occurrencesCount = await prisma.occurrence.count();

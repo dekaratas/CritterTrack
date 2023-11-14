@@ -95,15 +95,6 @@ export default function Statistics() {
             onChange={() => handleOptionChange('button3')}
           />
           <label htmlFor="button3">Button 3</label>
-          <input
-            type="radio"
-            id="button4"
-            name="options"
-            value="button4"
-            checked={selectedOption === 'button4'}
-            onChange={() => handleOptionChange('button4')}
-          />
-          <label htmlFor="button4">Button 4</label>
         </p>
       </div>
       {loading ? (
