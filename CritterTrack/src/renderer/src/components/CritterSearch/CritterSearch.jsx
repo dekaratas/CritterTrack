@@ -1,3 +1,5 @@
+import './critterSearch.css'
+
 export default function CritterSearch() {
   return (
     <div className="searchContainer">

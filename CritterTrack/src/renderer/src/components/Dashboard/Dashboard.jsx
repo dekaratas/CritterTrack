@@ -26,6 +26,7 @@ export default function Dashboard() {
       {viewState == 'settings' && <Settings />}
       {viewState == 'critterSearch' && <CritterSearch />}
       {viewState == 'stats' && <Statistics />}
+      {viewState == 'crittersearch' && <CritterSearch />}
     </div>
   )
 }
