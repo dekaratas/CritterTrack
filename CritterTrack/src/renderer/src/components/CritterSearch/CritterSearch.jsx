@@ -2,15 +2,17 @@ import './critterSearch.css'
 import { useState, useEffect } from 'react'
 import { getImage } from '../../services/imageUploadService'
 import { getSpecWikiText } from '../../services/wikiApiService'
+import fishMarker from '../../assets/icons8-fish-64.png'
 
 export default function CritterSearch() {
   const [searchTerm, setSearchTerm] = useState('')
   const [suggestions, setSuggestions] = useState([])
-  const [pageContent, setPageContent] = useState('')
+  const [pageContent, setPageContent] = useState(null)
   const [wikiText, setWikiText] = useState(null)
   const [image, setImage] = useState(null)
   const [title, setTitle] = useState(null)
 
+  //! Check input and suggest terms
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
@@ -22,7 +24,7 @@ export default function CritterSearch() {
       }
     }
 
-    // Fetch suggestions only if the search term is not empty
+    //! Fetch suggestions only if the search term is not empty
     if (searchTerm.trim() !== '') {
       fetchSuggestions()
     } else {
@@ -30,6 +32,7 @@ export default function CritterSearch() {
     }
   }, [searchTerm])
 
+  //! Listen to every key stroke
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value)
   }
@@ -38,36 +41,33 @@ export default function CritterSearch() {
     setSearchTerm('')
     setSuggestions([])
     setPageContent(suggestion)
+    console.log(suggestion)
+    //! Adjust wiki search query
+    const formattedWikiSuggestion = convertToValidWikiQuery(suggestion)
+    console.log(formattedWikiSuggestion)
+    setWikiText(formattedWikiSuggestion)
+    getWikiText(formattedWikiSuggestion)
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const textResult = await getSpecWikiText(
-          `https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=Atlantic_sturgeon`
-        )
+  //! Help formatting to adjust to wikipedia page
+  const convertToValidWikiQuery = (suggestion) => {
+    return suggestion.replace(/ /g, '_')
+  }
 
-        const imageData = await getImage(`{atlantic%20sturgeon}`)
-
-        const imageSrc = await imageData.data[0].images[0].link
-        setImage(imageSrc)
-
-        let obj = textResult.data.query.pages
-        let objKey = Object.keys(obj)
-        let cleanedWikiText = removeHtmlTags(obj[objKey].extract)
-
-        // Get Wiki Title normalized
-        let wikiTitle = textResult.data.query.normalized[0].to
-        setTitle(wikiTitle)
-
-        setWikiText(cleanedWikiText)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
+  async function getWikiText(wikiQuery) {
+    try {
+      const textResult = await getSpecWikiText(
+        `https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=${wikiQuery}`
+      )
+      let obj = textResult.data.query.pages
+      let objKey = Object.keys(obj)
+      let cleanedWikiText = removeHtmlTags(obj[objKey].extract)
+      console.log(cleanedWikiText)
+      setWikiText(cleanedWikiText)
+    } catch (err) {
+      console.error(err)
     }
-
-    fetchData()
-  }, [])
+  }
 
   function removeHtmlTags(htmlString) {
     return htmlString.replace(/<\/?[^>]+(>|$)/g, '')
@@ -76,7 +76,7 @@ export default function CritterSearch() {
   return (
     <div className="searchContainer">
       <div className="searchInfo">
-        <h1>Here will be something grand...soon</h1>
+        <h1>Search for specific Species</h1>
         <input type="text" value={searchTerm} onChange={handleInputChange} />
         {suggestions.length > 0 && (
           <ul className="suggestionList">
@@ -87,9 +87,10 @@ export default function CritterSearch() {
             ))}
           </ul>
         )}
+        {wikiText ? wikiText : 'Waiting for your selection!'}
       </div>
       <div className="critterInfo">
-        <img src={image} alt="searchImage" />
+        <img src={image ? image : fishMarker} alt="searchImage" />
       </div>
     </div>
   )

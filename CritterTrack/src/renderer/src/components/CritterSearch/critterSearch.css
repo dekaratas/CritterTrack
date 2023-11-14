@@ -1,6 +1,7 @@
 .searchContainer {
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-image: linear-gradient(to bottom right, #3500d3, #190061);
   width: 80vw;
   height: 70vh;
@@ -12,4 +13,25 @@
   box-shadow:
     rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.searchInfo {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+input {
+  width: 200px;
+}
+
+.critterInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.critterInfo img {
+  max-width: 500px;
 }
