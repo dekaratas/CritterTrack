@@ -4,6 +4,8 @@ const lookup = require("coordinate_to_country");
 const { countryCodes } = require("../Utils/CountryHashTable.js");
 const getOccurrences = require("../Utils/apiClientService.js");
 
+// I call it API controller but it's more or less a very verbose helper function to get data in the shape I want from OBIS' API
+
 async function apiConsoomer() {
   const delayInSeconds = 2;
   let currentDate = new Date();
@@ -12,7 +14,6 @@ async function apiConsoomer() {
     const startDate = currentDate.toISOString().split("T")[0];
     const endDate = currentDate.toISOString().split("T")[0];
 
-    //! ?startdate=${startDate}&enddate=${endDate}&size=10
     const query = `?startdate=${startDate}&enddate=${endDate}&size=50`;
     const data = await getOccurrences(query);
     for (const myEntry of data.results) {
