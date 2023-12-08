@@ -34,7 +34,6 @@ export async function deleteRecordById(id) {
   }
 }
 
-// Update getSpeciesCount function
 export async function getSpeciesCount() {
   try {
     const response = await apiGetSpeccsCount.get()
@@ -44,7 +43,6 @@ export async function getSpeciesCount() {
   }
 }
 
-// Update getOccCount function
 export async function getOccCount() {
   try {
     const response = await apiGetOccCount.get()

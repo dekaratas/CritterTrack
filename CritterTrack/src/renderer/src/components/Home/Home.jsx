@@ -26,7 +26,6 @@ export default function Home() {
         let objKey = Object.keys(obj)
         let cleanedWikiText = removeHtmlTags(obj[objKey].extract)
 
-        // Get Wiki Title normalized
         console.log('trying to get name: ', textResult.data.query.normalized[0].to)
         let wikiTitle = textResult.data.query.normalized[0].to
         setTitle(wikiTitle)
@@ -53,13 +52,6 @@ export default function Home() {
           <p>{wikiText}</p>
         </div>
         <div className="welcome-left">
-          {/* <h1>
-            Database currently featuring:
-            <br />
-            {occCount} external entries containing
-            <br />
-            {speccsCount} unique species.
-          </h1> */}
           <figure>
             <img src={image} alt="imgur" className="cotd-img" />
             <figcaption>Picture supplied by dadmonker @ imgur</figcaption>

@@ -6,7 +6,7 @@ export const postImageAxios = axios.create({
   baseURL: 'https://api.imgur.com/3/upload',
   timeout: 5000,
   headers: {
-    Authorization: 'Client-ID 546c25a59c58ad7',
+    Authorization: '',
     'Content-Type': 'multipart/form-data'
   }
 })
@@ -15,7 +15,7 @@ export const getImageAxios = axios.create({
   baseURL: 'https://api.imgur.com/3/gallery/search?q=',
   timeout: 5000,
   headers: {
-    Authorization: 'Client-ID 546c25a59c58ad7',
+    Authorization: '',
     'Content-Type': 'multipart/form-data'
   }
 })
@@ -51,8 +51,6 @@ export const apiGetSpeccsCount = axios.create({
   timeout: 5000
 })
 
-//! When using the wiki baseURL, it keeps adding a backwards slash to the query which messes it up
-// Get a brief Wikipedia Description of any specific Species
 export const getWikiText = axios.create({
   baseURL: '',
   timeout: 5000

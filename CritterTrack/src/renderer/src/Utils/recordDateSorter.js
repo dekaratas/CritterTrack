@@ -8,7 +8,6 @@ const compareDates = (recordA, recordB) => {
   return 0
 }
 
-// Function to sort records by date
 const sortRecordsByDate = (records) => {
   return [...records].sort(compareDates)
 }

@@ -5,8 +5,6 @@ import './AddRecord.css'
 import { useState } from 'react'
 import { formatISO, parseISO, setSeconds, setMilliseconds } from 'date-fns'
 
-// TODO: After creating a species table, have the input field suggest autocompletions
-
 export default function AddRecord() {
   const initialInputs = [
     { id: 'vernacular', value: '', name: 'Species (Vernacular)', type: 'text' },
@@ -37,7 +35,6 @@ export default function AddRecord() {
     setInputs(updatedInputs)
   }
 
-  //! Handle change within ImageUpload component and fill url field automatically
   const handleImageChange = (url) => {
     console.log('handleImageChange is called', url)
     const updatedInputs = inputs.map((input) => {
@@ -49,17 +46,12 @@ export default function AddRecord() {
     setInputs(updatedInputs)
   }
 
-  //! Submit form and send to backend db
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // Note: HTMLCollection aka form data is NOT an array...
-    // Bloody behaves like one but regardless, have to turn it into array to map over it
     const formElementsArray = Array.from(e.target.elements)
 
-    // Filter through all html elements within the form and only get the Input ones
     const inputFields = formElementsArray.filter((element) => element.tagName === 'INPUT')
 
-    // Populate the data object and jump through major hoops to get properly ISO-8601 time format
     const data = {}
     inputFields.forEach((field) => {
       if (field.id === 'date') {
@@ -72,7 +64,7 @@ export default function AddRecord() {
         data[field.id] = field.value
       }
     })
-    // Stringify my data to prepare it for sendoff
+
     const jsonData = JSON.stringify(data)
     console.log(jsonData)
 
@@ -80,8 +72,6 @@ export default function AddRecord() {
 
     if (resData) {
       console.log(resData)
-      // Clearing all fields
-      // TODO: Find a better method for success notifications
       resetInputs()
       alert('Great Success! Your new record was added! 🐬')
     }

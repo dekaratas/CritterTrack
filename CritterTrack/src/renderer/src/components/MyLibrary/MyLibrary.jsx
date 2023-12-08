@@ -22,9 +22,6 @@ function SetViewOnClick({ animateRef }) {
   return null
 }
 
-// Map component receiving all records including the positional data
-//! Latitude (North/South) first
-// TODO: Automatically scroll to the record entry when map marker is selected
 function Map({ records }) {
   const animateRef = useRef(true)
 

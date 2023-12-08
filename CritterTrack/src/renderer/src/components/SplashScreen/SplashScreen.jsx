@@ -39,10 +39,3 @@ export default function SplashScreen() {
     </div>
   )
 }
-
-{
-  /* <div class="startScreen" [ngClass]="{'itsThere': true, 'itsGone': triggerGone}">
-    <img src="../../assets/logo-alt/png/logo-no-background.png" alt="myLogo" [ngClass]="{ 'fade-in-element': true, 'fade-in': triggerFadeIn}">
-    <button class="splashButton" [ngClass]="{ 'fade-in-element': true, 'fade-in': triggerFadeInButton}" (click)="moveSplashScreen()">Start</button>
-</div> */
-}

@@ -11,7 +11,6 @@ export default function CritterSearch() {
   const [image, setImage] = useState(null)
   const [title, setTitle] = useState(null)
 
-  //! Check input and suggest terms
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
@@ -23,7 +22,6 @@ export default function CritterSearch() {
       }
     }
 
-    //! Fetch suggestions only if the search term is not empty
     if (searchTerm.trim() !== '') {
       fetchSuggestions()
     } else {

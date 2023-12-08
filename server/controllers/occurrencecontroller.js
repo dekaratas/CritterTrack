@@ -18,7 +18,6 @@ async function getSpeciesCount(req, res) {
   console.log(`Number of unique species: ${uniqueSpeciesCount.length}`);
 }
 
-//! Get all specific countries
 async function getCountryNames(req, res) {
   try {
     const uniqueCountries = await prisma.occurrence.findMany({
@@ -31,14 +30,12 @@ async function getCountryNames(req, res) {
     const countryNames = uniqueCountries.map((entry) => entry.country);
 
     res.status(200).send(JSON.stringify(countryNames));
-    // console.log(`Unique countries: ${JSON.stringify(countryNames)}`);
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving data!");
   }
 }
 
-//! Get unique Species names
 async function getSpecies(req, res) {
   try {
     const { search } = req.query;
@@ -50,14 +47,13 @@ async function getSpecies(req, res) {
       },
     };
 
-    // If a search term is provided, filter by it
     if (search) {
       speciesQuery = {
         ...speciesQuery,
         where: {
           vernacularName: {
-            contains: search, // Adjust this based on your filtering needs
-            mode: "insensitive", // Case-insensitive search
+            contains: search,
+            mode: "insensitive",
           },
         },
       };
@@ -74,7 +70,6 @@ async function getSpecies(req, res) {
   }
 }
 
-//! Get Occ count based on country
 async function getCountryCount(req, res) {
   try {
     const { country } = req.params;
@@ -87,7 +82,6 @@ async function getCountryCount(req, res) {
       },
     });
 
-    // console.log(scientificNamesInCountry.length);
     res.status(200).send(`${scientificNamesInCountry.length}`);
   } catch (error) {
     console.log(error);

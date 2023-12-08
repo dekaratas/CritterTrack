@@ -1,26 +1,6 @@
 const countryCodes = new Map();
 const fs = require("fs");
 
-//* AI managed to messed up the order while writing a simple Map table, I need to call get on the country CODE
-//* And there's probably an easy way to reverse the values but I can't find one rn
-// countryCodes.set("Afghanistan", "AFG");
-// countryCodes.set("Albania", "ALB");
-// countryCodes.set("Algeria", "DZA");
-// and so on...
-
-// Don't really need this code anymore but I'm happy it worked so I'll just comment it out and leave it
-// let arrCode = []
-// let arrName = [];
-// for (const x of countryCodes.values()) {
-// arrCode.push(x);
-// }
-// for (const y of countryCodes.keys()) {
-//   arrName.push(y);
-// }
-// for (let i = 0; i < arrCode.length; i++) {
-//   fs.appendFileSync('./CountryHashTable.js', `countryCodes.set("${arrCode[i]}", "${arrName[i]}");\n`);
-// }
-
 countryCodes.set("AFG", "Afghanistan");
 countryCodes.set("ALB", "Albania");
 countryCodes.set("DZA", "Algeria");

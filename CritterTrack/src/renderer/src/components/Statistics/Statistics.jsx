@@ -12,7 +12,6 @@ export default function Statistics() {
       try {
         setLoading(true)
 
-        // Fetch country names
         const response = await fetch('http://localhost:3001/countries')
         const data = await response.json()
 
@@ -28,19 +27,15 @@ export default function Statistics() {
           })
         )
 
-        // Filter out duplicates after combining
         const uniqueData = filterDuplicates(dataWithSpeciesCount)
 
-        // Sort the data by species count in descending order
         uniqueData.sort((a, b) => b.y - a.y)
 
-        // Take the top 10 countries and group the rest as "Other"
         const top10Countries = uniqueData.slice(0, 10)
         const otherCountriesCount = uniqueData
           .slice(10)
           .reduce((sum, country) => sum + country.y, 0)
 
-        // Add "Other" entry
         const updatedData = [...top10Countries, { x: 'Other', y: otherCountriesCount }]
 
         setCountryData(updatedData)
@@ -60,7 +55,6 @@ export default function Statistics() {
 
   const handleOptionChange = (option) => {
     setSelectedOption(option)
-    // You can add logic to update data based on the selected option here
   }
 
   return (
@@ -156,7 +150,6 @@ export default function Statistics() {
   )
 }
 
-// Function to combine "United States" and "United States of America (the)"
 const combineUnitedStates = (data) => {
   const unitedStatesIndex = data.findIndex((country) =>
     ['United States', 'United States of America (the)'].includes(country)
@@ -164,7 +157,7 @@ const combineUnitedStates = (data) => {
 
   if (unitedStatesIndex !== -1) {
     const combinedData = [...data]
-    combinedData[unitedStatesIndex] = 'United States' // Combine entries
+    combinedData[unitedStatesIndex] = 'United States'
     return combinedData
   }
 
