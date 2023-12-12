@@ -1,16 +1,31 @@
 # CritterTrack
+![](https://i.imgur.com/Wv1IwWn.png)
+*Start Screen*
 
 ## Overview
 CritterTrack is a desktop app written in JavaScript that enables hobbyists, photographers and enthusiasts of the deep blue sea to store detailed records of their encounters with Marine wildlife supported by an easy to navigate graphical interface.
 
+![](https://i.imgur.com/az3Uh6Q.png)
+*Record Entry Screen*
+
 The user has the ability to upload images via their imgur account and fill in information such as the exact position of their encounter as well as various scientific observations including the Surface Temperature and the Salinity levels they've measured at the time.
+
+![](https://i.imgur.com/3RcxMmP.png)
+*Success*
 
 Stored information is then represented on a global map featuring key details as well as markers pointing to the location on said map.
 
-### Getting Started
-To try the project for yourself, clone the github repo into a folder of your choice and navigate to the root directory.
-From inside there, run:
-`npm i` and wait for all dependencies to finish downloading. Finally, navigate to both the server and CritterTrack folders and run `npm run start` in each of them.
+![](https://i.imgur.com/ZfEQMMQ.png)
+*Keep track via an interactive map*
+
+
+## Getting Started
+### Requirements
+- Debian based OS 
+- node package manager (optional)
+- PostgreSQL (optional)
+
+If you're running a Debian based system, feel free to download the most recent .deb file under releases and install it by executing `dpkgi -i crittertrack_1.0.0_amd64.deb` inside your terminal. Files for the backend API and PostgreSQL/Prisma schema are contained within the repo as well as a commented out function that will fetch data from OBIS to populate charts.
 
 ## Tech Stack
 ### Frontend
