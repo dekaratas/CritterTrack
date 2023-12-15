@@ -21,11 +21,11 @@ Stored information is then represented on a global map featuring key details as 
 
 ## Getting Started
 ### Requirements
-- Debian based OS 
+- Debian based OS (for now)
 - node package manager (optional)
 - PostgreSQL (optional)
 
-If you're running a Debian based system, feel free to download the most recent .deb file under releases and install it by executing `dpkgi -i crittertrack_1.0.0_amd64.deb` inside your terminal. Files for the backend API and PostgreSQL/Prisma schema are contained within the repo as well as a commented out function that will fetch data from OBIS to populate charts.
+If you're running a Debian based system, feel free to download the most recent .deb file under releases and install it by executing `dpkg -i crittertrack_1.0.0_amd64.deb` inside your terminal. Files for the backend API and PostgreSQL/Prisma schema are contained within the repo as well as a commented out function that will fetch data from OBIS to populate charts.
 
 ## Tech Stack
 ### Frontend
